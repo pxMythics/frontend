@@ -19,8 +19,6 @@ export enum ChainId {
 interface FrontendConfig {
   isDebug: boolean;
   isProduction: boolean;
-  moralisURL: string;
-  moralisAppId: string;
   contractAddress: string;
   ownerAddress: string;
   chainId: ChainId;
@@ -34,8 +32,6 @@ const computeConfig = (): FrontendConfig => {
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     isProduction: buildType === EnvironmentType.PROD,
-    moralisURL: getMoralisURL(),
-    moralisAppId: getMoralisAppId(),
     contractAddress: getContractAddress(),
     ownerAddress: getOwnerAddress(),
     chainId: getChainId(),
@@ -59,8 +55,6 @@ const getEnvironmentType = (): EnvironmentType => {
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
 const getChainId = (): ChainId => (process.env.REACT_APP_CHAIN_ID as ChainId) ?? ChainId.ETHEREUM;
-const getMoralisURL = (): string => process.env.REACT_APP_MORALIS_SERVER_URL!;
-const getMoralisAppId = (): string => process.env.REACT_APP_MORALIS_APP_ID!;
 const getContractAddress = (): string => process.env.REACT_APP_CONTRACT_ADDRESS!;
 const getOwnerAddress = (): string => process.env.REACT_APP_OWNER_ADDRESS!;
 
