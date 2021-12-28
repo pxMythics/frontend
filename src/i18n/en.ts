@@ -1,3 +1,5 @@
 export const en = {
-  translation: {}
+  translation: {
+    menu: { home: 'Home', about: 'About', roadmap: 'Roadmap', team: 'Team', mintButton: 'Mint' },
+  },
 };
