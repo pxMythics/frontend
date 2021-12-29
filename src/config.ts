@@ -1,5 +1,4 @@
 import { Config as DAppConfig, Hardhat, Localhost, Mainnet, Rinkeby } from '@usedapp/core';
-import { mergeRight } from 'ramda';
 
 enum EnvironmentType {
   DEBUG = 'debug',
@@ -16,7 +15,11 @@ interface FrontendConfig {
 const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig =>
   isDebug
     ? getIsLocalNode()
-      ? { networks: [Localhost, Hardhat] }
+      ? {
+          networks: [Localhost, Hardhat],
+          // TODO This should be done automatically
+          multicallAddresses: { [Hardhat.chainId]: '0x5fbdb2315678afecb367f032d93f642f64180aa3' },
+        }
       : {
           readOnlyChainId: Rinkeby.chainId,
           readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },

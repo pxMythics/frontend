@@ -4,6 +4,7 @@ export const en = {
     mintButton: {
       short: {
         notConnected: 'Mint',
+        fetching: 'Connecting',
         disabled: 'Invalid Wallet',
         whitelist: {
           enabled: 'Mint',
@@ -17,6 +18,7 @@ export const en = {
       },
       long: {
         notConnected: 'Mint your pxMythics genesis NFT',
+        fetching: 'Connecting',
         disabled: 'Invalid Wallet',
         whitelist: {
           enabled: 'Mint your pxMythics genesis NFT',
