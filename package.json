@@ -10,7 +10,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@walletconnect/web3-provider": "^1.6.6",
+    "@usedapp/core": "^0.7.3",
     "axios": "^0.24.0",
     "css-reset-and-normalize": "^2.3.5",
     "i18next": "^21.4.0",
@@ -31,6 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:mock": "REACT_APP_MOCK=true react-scripts start",
+    "start:local": "REACT_APP_LOCAL=true react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint --fix",
     "test": "react-scripts test",

@@ -1,40 +1,48 @@
+import { Config as DAppConfig, Hardhat, Localhost, Mainnet, Rinkeby } from '@usedapp/core';
+import { mergeRight } from 'ramda';
+
 enum EnvironmentType {
   DEBUG = 'debug',
   PROD = 'prod',
-}
-
-export enum ChainId {
-  ETHEREUM = '0x1',
-  ROPSTEN = '0x3',
-  RINKEBY = '0x4',
-  GOERLI = '0x5',
-  KOVAN = '0x2a',
-  BINANCE = '0x38',
-  BINANCE_TEST = '0x61',
-  MATIC = '0x89',
-  MUMBAI = '0x13881',
-  LOCAL = '0x539',
 }
 
 interface FrontendConfig {
   isDebug: boolean;
   isProduction: boolean;
   contractAddress: string;
-  ownerAddress: string;
-  chainId: ChainId;
+  DAppConfig: DAppConfig;
 }
+
+const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig =>
+  isDebug
+    ? getIsLocalNode()
+      ? { networks: [Localhost, Hardhat] }
+      : {
+          readOnlyChainId: Rinkeby.chainId,
+          readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
+          networks: [Rinkeby],
+        }
+    : {
+        readOnlyChainId: Mainnet.chainId,
+        readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
+        networks: [Mainnet],
+      };
 
 const computeConfig = (): FrontendConfig => {
   const buildType = getEnvironmentType();
 
   console.info('Build type [%s].', buildType);
 
+  // Fetch config from injected config when in prod (see index.html)
+  const { alchemyUrl, contractAddress } = window.CONFIG || {
+    alchemyUrl: getAlchemyUrl(),
+    contractAddress: getContractAddress(),
+  };
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     isProduction: buildType === EnvironmentType.PROD,
-    contractAddress: getContractAddress(),
-    ownerAddress: getOwnerAddress(),
-    chainId: getChainId(),
+    contractAddress: contractAddress,
+    DAppConfig: computeDAppConfig(buildType === EnvironmentType.DEBUG, alchemyUrl),
   };
 };
 
@@ -54,8 +62,8 @@ const getEnvironmentType = (): EnvironmentType => {
  * like `return "production"` (assuming `process.env.NODE_ENV` equals `production`).
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
-const getChainId = (): ChainId => (process.env.REACT_APP_CHAIN_ID as ChainId) ?? ChainId.ETHEREUM;
 const getContractAddress = (): string => process.env.REACT_APP_CONTRACT_ADDRESS!;
-const getOwnerAddress = (): string => process.env.REACT_APP_OWNER_ADDRESS!;
+const getAlchemyUrl = (): string => process.env.REACT_APP_ALCHEMY_URL!;
+const getIsLocalNode = (): boolean => process.env.REACT_APP_LOCAL_NODE! === 'true';
 
 export const Config: Readonly<FrontendConfig> = computeConfig();

@@ -1,13 +1,13 @@
 import { AppBar as MuiAppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
+import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import { Box } from 'components/base/box';
-import { MintButton } from 'components/mint-button';
+import { MintButton, MintButtonStyle } from 'components/mint-button';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ReactComponent as Logo } from 'assets/img/logo.svg';
 
 const MobileMenu: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -57,7 +57,7 @@ const DesktopMenu: React.FunctionComponent = (props) => {
         <StyledMenuItem>{t('menu.about')}</StyledMenuItem>
         <StyledMenuItem>{t('menu.roadmap')}</StyledMenuItem>
         <StyledMenuItem>{t('menu.team')}</StyledMenuItem>
-        <MintButton />
+        <MintButton style={MintButtonStyle.SHORT} />
       </MenuItemContainer>
       <RightSpacer />
     </DesktopMenuContainer>
@@ -115,12 +115,13 @@ const MenuItemContainer = styled(Box)`
   margin-left: 158px;
   margin-right: 83px;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledMenuItem = styled(MenuItem)`
   && {
     color: white;
-    padding: 18;
+    padding: 18px;
   }
 `;
 
