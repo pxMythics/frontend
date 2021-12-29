@@ -22,35 +22,48 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
   const { t } = useTranslation();
   const tokenBalance = useTokenBalance();
-  console.log(`fetched token balance with ${tokenBalance}`);
+
+  const isLoading = useCallback(() => fetching || isNil(tokenBalance), [fetching, tokenBalance]);
+
+  const limitReached = useCallback(() => {
+    if (mintType === MintType.WHITELIST && tokenBalance === 1) {
+      return true;
+    } else if (mintType === MintType.FREE && tokenBalance === mintCount) {
+      return true;
+    }
+    return false;
+  }, [mintType, tokenBalance, mintCount]);
+
   const buttonTitleKey = useCallback(() => {
     const prefix = `mintButton.${style}`;
     let suffix = 'notConnected';
     if (!isNilOrEmpty(account) && isNil(error)) {
-      if (fetching) {
+      if (isLoading()) {
         suffix = 'fetching';
       } else if (mintType === MintType.FREE) {
-        // TODO: Need to check on contract the amount
-        // suffix = `free.${limitReached ? 'disabled' : 'enabled'}`;
-        suffix = `free.disabled`;
+        suffix = `free.${limitReached() ? 'disabled' : 'enabled'}`;
       } else if (mintType === MintType.WHITELIST) {
-        // TODO: Need to check on contract the amount
-        // suffix = `whitelist.${limitReached ? 'disabled' : 'enabled'}`;
-        suffix = `whitelist.disabled`;
+        suffix = `whitelist.${limitReached() ? 'disabled' : 'enabled'}`;
       }
-    } else if (error) {
+    }
+    if (error || mintType === MintType.NONE) {
       suffix = 'disabled';
     }
     return `${prefix}.${suffix}`;
-  }, [account, error, mintType, fetching, style, tokenBalance]);
+  }, [account, error, mintType, isLoading, limitReached, style]);
+
+  const buttonDisabled = useCallback(
+    () => isLoading() || !isNil(error) || mintType === MintType.NONE,
+    [isLoading, mintType, error],
+  );
 
   const onMintClick = useCallback(
-    () =>
-      isNilOrEmpty(account) ? activateBrowserWallet((error1) => console.log(error1)) : () => {},
+    () => (isNilOrEmpty(account) ? activateBrowserWallet() : () => {}),
     [account],
   );
+
   return (
-    <StyledButton onClick={onMintClick} disabled={fetching} variant="contained">
+    <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
       {t(buttonTitleKey(), { count: mintCount })}
     </StyledButton>
   );

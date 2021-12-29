@@ -35,7 +35,7 @@ export const useMintAccess = (): MintAccess => {
         setFetching(false);
       })
       .catch((error) => {
-        logger.error(`error fetching assets: ${error.message}`);
+        logger.error(`error fetching mint access: ${error.message}`);
         fetchError.current = error;
         setFetching(false);
       });
@@ -43,7 +43,6 @@ export const useMintAccess = (): MintAccess => {
 
   useEffect(() => {
     if (!isNilOrEmpty(account) && !fetching) {
-      console.log(`will check mint status for ${account}`);
       mintAccess.current = undefined;
       setFetching(true);
       fetchMintAccess();
@@ -53,6 +52,7 @@ export const useMintAccess = (): MintAccess => {
   return {
     fetching,
     mintType: mintAccess.current?.mint || MintType.NONE,
+    mintCount: mintAccess.current?.mint_count,
     nonce: mintAccess.current?.nonce,
     proof: mintAccess.current?.proof,
     error: fetchError.current,

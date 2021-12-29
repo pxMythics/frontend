@@ -12,11 +12,15 @@ interface FrontendConfig {
   DAppConfig: DAppConfig;
 }
 
-const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig =>
-  isDebug
+const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig => {
+  const multicallAddresses = {
+    [Mainnet.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
+    [Rinkeby.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
+  };
+  return isDebug
     ? getIsLocalNode()
       ? {
-          networks: [Localhost, Hardhat],
+          networks: [Hardhat],
           // TODO This should be done automatically
           multicallAddresses: { [Hardhat.chainId]: '0x5fbdb2315678afecb367f032d93f642f64180aa3' },
         }
@@ -24,13 +28,15 @@ const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig =>
           readOnlyChainId: Rinkeby.chainId,
           readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
           networks: [Rinkeby],
+          multicallAddresses: { ...multicallAddresses },
         }
     : {
         readOnlyChainId: Mainnet.chainId,
         readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
         networks: [Mainnet],
+        multicallAddresses: { ...multicallAddresses },
       };
-
+};
 const computeConfig = (): FrontendConfig => {
   const buildType = getEnvironmentType();
 
