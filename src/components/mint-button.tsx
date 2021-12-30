@@ -1,6 +1,8 @@
 import { Button } from '@mui/material';
 import { useEthers } from '@usedapp/core';
+import { FreeMinter } from 'components/free-minter';
 import { useMintAccess } from 'hooks/use-mint-access';
+import { useModalControls } from 'hooks/use-modal-controls';
 import { useTokenBalance } from 'hooks/use-token-balance';
 import { MintType } from 'model/api/mint-response';
 import { isNil } from 'ramda';
@@ -18,13 +20,13 @@ interface Props {
 }
 
 export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
+  const { t } = useTranslation();
   const { activateBrowserWallet, account } = useEthers();
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
-  const { t } = useTranslation();
+  const [modalShown, showModal, hideModal] = useModalControls();
   const tokenBalance = useTokenBalance();
 
   const isLoading = useCallback(() => fetching || isNil(tokenBalance), [fetching, tokenBalance]);
-
   const limitReached = useCallback(() => {
     if (mintType === MintType.WHITELIST && tokenBalance === 1) {
       return true;
@@ -33,7 +35,6 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
     }
     return false;
   }, [mintType, tokenBalance, mintCount]);
-
   const buttonTitleKey = useCallback(() => {
     const prefix = `mintButton.${style}`;
     let suffix = 'notConnected';
@@ -51,29 +52,33 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
     }
     return `${prefix}.${suffix}`;
   }, [account, error, mintType, isLoading, limitReached, style]);
-
   const buttonDisabled = useCallback(
     () => isLoading() || !isNil(error) || mintType === MintType.NONE,
     [isLoading, mintType, error],
   );
 
   const onMintClick = useCallback(
-    () => (isNilOrEmpty(account) ? activateBrowserWallet() : () => {}),
-    [account],
+    () => (isNilOrEmpty(account) ? activateBrowserWallet() : showModal()),
+    [account, mintCount, mintType, nonce, proof],
   );
 
   return (
-    <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
-      {t(buttonTitleKey(), { count: mintCount })}
-    </StyledButton>
+    <>
+      <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
+        {t(buttonTitleKey(), { count: mintCount })}
+      </StyledButton>
+      {modalShown && mintCount && (
+        <FreeMinter mintCount={mintCount} onTransactionDone={hideModal} />
+      )}
+    </>
   );
 };
 
 const StyledButton = styled(Button)`
   && {
     background: ${(props): FlattenSimpleInterpolation | null => css`
-      linear-gradient(180deg, 
-        ${props.theme.palette.primaryGradientStart.main} 49.38%, 
+      linear-gradient(180deg,
+        ${props.theme.palette.primaryGradientStart.main} 49.38%,
         ${props.theme.palette.primaryGradientFinish.main} 100%,
       ${props.theme.palette.primaryGradientFinish.main} 100%,
       ${props.theme.palette.primaryGradientFinish.main} 100%);

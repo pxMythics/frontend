@@ -1,11 +1,10 @@
-import { Interface } from '@ethersproject/abi';
 import { useContractCall, useEthers } from '@usedapp/core';
 import { Config } from 'config';
-import genesis from 'contract/genesis.json';
+import { useContractAbi } from 'hooks/use-contract-abi';
 
 export const useTokenBalance = (): number | undefined => {
   const { account } = useEthers();
-  const contractABI = new Interface(genesis);
+  const contractABI = useContractAbi();
   const tokenBalance = useContractCall(
     account &&
       Config.contractAddress && {
