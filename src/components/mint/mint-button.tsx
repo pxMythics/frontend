@@ -38,6 +38,8 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
     return false;
   }, [mintType, tokenBalance, mintCount]);
 
+  console.log(`token balance is ${tokenBalance}`);
+
   const buttonTitleKey = useCallback(() => {
     const prefix = `mintButton.${style}`;
     let suffix = 'notConnected';

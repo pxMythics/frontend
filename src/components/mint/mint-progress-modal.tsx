@@ -1,6 +1,7 @@
 import { CircularProgress, Typography } from '@mui/material';
 import checkmark from 'assets/img/check_circle.png';
-import loadingGif from 'assets/img/mint-gif.gif';
+import mintingGif from 'assets/img/minting.gif';
+import mintingDoneGif from 'assets/img/minting-done.gif';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { isNil } from 'ramda';
@@ -34,7 +35,7 @@ export const MintProgressModal: React.FunctionComponent<Props> = ({
   return (
     <Container>
       <ImageContainer>
-        <img src={loadingGif} alt={t('mintModal.altGif')} />
+        <StyledImg src={isMinting ? mintingGif : mintingDoneGif} alt={t('mintModal.altGif')} />
       </ImageContainer>
       {isMinting ? (
         <PaddedTypography variant={'body2'}>{t('mintModal.mintingText')}</PaddedTypography>
@@ -70,8 +71,13 @@ const ImageContainer = styled(Box)`
   box-sizing: border-box;
   border-radius: 20px;
   margin: 48px;
+  overflow: hidden;
 `;
 
+const StyledImg = styled.img`
+  max-height: 100%;
+  max-width: 100%;
+`;
 const PaddedTypography = styled(Typography)`
   padding-bottom: 10px;
 `;

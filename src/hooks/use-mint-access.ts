@@ -39,7 +39,7 @@ export const useMintAccess = (): MintAccess => {
         fetchError.current = error;
         setFetching(false);
       });
-  }, [httpClient, account]);
+  }, [httpClient, account, logger]);
 
   useEffect(() => {
     if (!isNilOrEmpty(account) && !fetching) {

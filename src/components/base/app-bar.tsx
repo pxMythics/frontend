@@ -1,5 +1,8 @@
 import { AppBar as MuiAppBar, Menu, MenuItem, Toolbar } from '@mui/material';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
+import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
+import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
+import { ReactComponent as DiscordLogo } from 'assets/img/discord-icon.svg';
 import { Box } from 'components/base/box';
 import { MintButton, MintButtonStyle } from 'components/mint/mint-button';
 import { useOnMobile } from 'hooks/use-on-mobile';
@@ -49,16 +52,21 @@ const DesktopMenu: React.FunctionComponent = (props) => {
 
   return (
     <DesktopMenuContainer {...props}>
-      <LeftSpacer />
-      <Logo />
+      <FixedHeightBox>
+        <Logo />
+      </FixedHeightBox>
       <MenuItemContainer>
         <StyledMenuItem>{t('menu.home')}</StyledMenuItem>
         <StyledMenuItem>{t('menu.about')}</StyledMenuItem>
         <StyledMenuItem>{t('menu.roadmap')}</StyledMenuItem>
         <StyledMenuItem>{t('menu.team')}</StyledMenuItem>
-        <MintButton style={MintButtonStyle.SHORT} />
       </MenuItemContainer>
-      <RightSpacer />
+      <LinkContainer>
+        <OpenSeaLogo />
+        <DiscordLogo />
+        <TwitterLogo />
+      </LinkContainer>
+      <MintButton style={MintButtonStyle.SHORT} />
     </DesktopMenuContainer>
   );
 };
@@ -99,20 +107,20 @@ const StyledAppBar = styled(MuiAppBar)`
 `;
 
 const DesktopMenuContainer = styled(Box)`
-  width: 100%;
+  flex: 1;
+  margin-left: 184px;
+  margin-right: 184px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-const LeftSpacer = styled.div`
-  max-width: 208px;
-`;
-
-const RightSpacer = styled.div`
-  max-width: 275px;
+const FixedHeightBox = styled(Box)`
+  height: 62px;
 `;
 
 const MenuItemContainer = styled(Box)`
-  margin-left: 158px;
-  margin-right: 83px;
+  padding-left: 80px;
+  padding-right: 80px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -121,6 +129,17 @@ const StyledMenuItem = styled(MenuItem)`
   && {
     color: white;
     padding: 18px;
+  }
+`;
+
+const LinkContainer = styled(Box)`
+  height: 32px;
+  padding-right: 16px;
+  align-items: center;
+  justify-content: space-between;
+  > svg {
+    height: 32px;
+    mix-blend-mode: overlay;
   }
 `;
 

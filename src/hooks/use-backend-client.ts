@@ -1,11 +1,12 @@
 import { Axios } from 'axios';
+import { Config } from 'config';
 import { useMemo } from 'react';
 
 export const useBackendClient = (): Axios =>
   useMemo(
     () =>
       new Axios({
-        baseURL: 'https://pxmythics.io/api/',
+        baseURL: Config.backendUrl,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
