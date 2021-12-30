@@ -1,1 +1,3 @@
-export const mintPrice = '0.077';
+import { Config } from 'config';
+
+export const mintPrice = Config.isDebug ? '0.0000001' : '0.077';

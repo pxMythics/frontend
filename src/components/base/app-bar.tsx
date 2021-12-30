@@ -1,7 +1,7 @@
 import { AppBar as MuiAppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import { Box } from 'components/base/box';
-import { MintButton, MintButtonStyle } from 'components/mint-button';
+import { MintButton, MintButtonStyle } from 'components/mint/mint-button';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { isMobile } from 'react-device-detect';

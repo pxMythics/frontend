@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import { useEthers } from '@usedapp/core';
-import { FreeMinter } from 'components/free-minter';
+import { Modal } from 'components/base/modal';
+import { MinterSwitch } from 'components/mint/minter-switch';
 import { useMintAccess } from 'hooks/use-mint-access';
 import { useModalControls } from 'hooks/use-modal-controls';
 import { useTokenBalance } from 'hooks/use-token-balance';
@@ -70,8 +71,10 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
       <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
         {t(buttonTitleKey(), { count: mintCount })}
       </StyledButton>
-      {modalShown && mintCount && (
-        <FreeMinter mintCount={mintCount} onTransactionDone={hideModal} />
+      {mintType !== MintType.NONE && (
+        <Modal open={modalShown}>
+          <MinterSwitch mintType={mintType} mintCount={mintCount} nonce={nonce} proof={proof} />
+        </Modal>
       )}
     </>
   );

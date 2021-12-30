@@ -1,4 +1,5 @@
 import { useEthers } from '@usedapp/core';
+import { ethers } from 'ethers';
 import { MintResponse, MintType } from 'model/api/mint-response';
 import { useHttpClient } from 'provider/http-client-provider';
 import { useLogger } from 'provider/logger-provider';
@@ -54,7 +55,7 @@ export const useMintAccess = (): MintAccess => {
     mintType: mintAccess.current?.mint || MintType.NONE,
     mintCount: mintAccess.current?.mint_count,
     nonce: mintAccess.current?.nonce,
-    proof: mintAccess.current?.proof,
+    proof: mintAccess.current?.proof?.map((value) => `0x${value}`),
     error: fetchError.current,
   };
 };

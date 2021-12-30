@@ -20,7 +20,6 @@ export const FreeMinter: React.FunctionComponent<Props> = ({ mintCount, onTransa
   }, []);
 
   useEffect(() => {
-    console.log(`state is ${state?.status}`);
     if (!isNil(state) && state?.status !== 'Mining' && state?.status !== 'None') {
       onTransactionDone?.(state?.errorMessage);
     }
