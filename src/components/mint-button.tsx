@@ -27,6 +27,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
   const tokenBalance = useTokenBalance();
 
   const isLoading = useCallback(() => fetching || isNil(tokenBalance), [fetching, tokenBalance]);
+
   const limitReached = useCallback(() => {
     if (mintType === MintType.WHITELIST && tokenBalance === 1) {
       return true;
@@ -35,6 +36,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
     }
     return false;
   }, [mintType, tokenBalance, mintCount]);
+
   const buttonTitleKey = useCallback(() => {
     const prefix = `mintButton.${style}`;
     let suffix = 'notConnected';
@@ -52,8 +54,9 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
     }
     return `${prefix}.${suffix}`;
   }, [account, error, mintType, isLoading, limitReached, style]);
+
   const buttonDisabled = useCallback(
-    () => isLoading() || !isNil(error) || mintType === MintType.NONE,
+    () => isLoading() || !isNil(error) || mintType === MintType.NONE || limitReached(),
     [isLoading, mintType, error],
   );
 

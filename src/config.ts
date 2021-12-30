@@ -12,12 +12,12 @@ interface FrontendConfig {
   DAppConfig: DAppConfig;
 }
 
-const computeDAppConfig = (isDebug: boolean, alchemyUrl: string): DAppConfig => {
+const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig => {
   const multicallAddresses = {
     [Mainnet.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
     [Rinkeby.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
   };
-  return isDebug
+  return isStaging
     ? getIsLocalNode()
       ? {
           networks: [Hardhat],
@@ -43,15 +43,18 @@ const computeConfig = (): FrontendConfig => {
   console.info('Build type [%s].', buildType);
 
   // Fetch config from injected config when in prod (see index.html)
-  const { alchemyUrl, contractAddress } = window.CONFIG || {
+  const { alchemyUrl, contractAddress, isStaging } = window.CONFIG || {
     alchemyUrl: getAlchemyUrl(),
     contractAddress: getContractAddress(),
+    // More or less a hack, we want to be on rinkeby on staging but we don't pass the environment type
+    // we inject it directly in the config
+    isStaging: buildType === EnvironmentType.DEBUG,
   };
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     isProduction: buildType === EnvironmentType.PROD,
     contractAddress: contractAddress,
-    DAppConfig: computeDAppConfig(buildType === EnvironmentType.DEBUG, alchemyUrl),
+    DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
   };
 };
 

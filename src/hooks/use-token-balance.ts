@@ -14,5 +14,5 @@ export const useTokenBalance = (): number | undefined => {
         args: [account], // Method arguments - address to be checked for balance
       },
   );
-  return tokenBalance && (tokenBalance[0] as number);
+  return tokenBalance && Number(tokenBalance[0]);
 };
