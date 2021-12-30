@@ -1,44 +1,60 @@
+import { Config as DAppConfig, Hardhat, Mainnet, Rinkeby } from '@usedapp/core';
+
 enum EnvironmentType {
   DEBUG = 'debug',
   PROD = 'prod',
 }
 
-export enum ChainId {
-  ETHEREUM = '0x1',
-  ROPSTEN = '0x3',
-  RINKEBY = '0x4',
-  GOERLI = '0x5',
-  KOVAN = '0x2a',
-  BINANCE = '0x38',
-  BINANCE_TEST = '0x61',
-  MATIC = '0x89',
-  MUMBAI = '0x13881',
-  LOCAL = '0x539',
-}
-
 interface FrontendConfig {
   isDebug: boolean;
   isProduction: boolean;
-  moralisURL: string;
-  moralisAppId: string;
   contractAddress: string;
-  ownerAddress: string;
-  chainId: ChainId;
+  DAppConfig: DAppConfig;
 }
 
+const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig => {
+  const multicallAddresses = {
+    [Mainnet.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
+    [Rinkeby.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
+  };
+  return isStaging
+    ? getIsLocalNode()
+      ? {
+          networks: [Hardhat],
+          // TODO This should be done automatically
+          multicallAddresses: { [Hardhat.chainId]: '0x5fbdb2315678afecb367f032d93f642f64180aa3' },
+        }
+      : {
+          readOnlyChainId: Rinkeby.chainId,
+          readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
+          networks: [Rinkeby],
+          multicallAddresses: { ...multicallAddresses },
+        }
+    : {
+        readOnlyChainId: Mainnet.chainId,
+        readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
+        networks: [Mainnet],
+        multicallAddresses: { ...multicallAddresses },
+      };
+};
 const computeConfig = (): FrontendConfig => {
   const buildType = getEnvironmentType();
 
   console.info('Build type [%s].', buildType);
 
+  // Fetch config from injected config when in prod (see index.html)
+  const { alchemyUrl, contractAddress, isStaging } = window.CONFIG || {
+    alchemyUrl: getAlchemyUrl(),
+    contractAddress: getContractAddress(),
+    // More or less a hack, we want to be on rinkeby on staging but we don't pass the environment type
+    // we inject it directly in the config
+    isStaging: buildType === EnvironmentType.DEBUG,
+  };
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     isProduction: buildType === EnvironmentType.PROD,
-    moralisURL: getMoralisURL(),
-    moralisAppId: getMoralisAppId(),
-    contractAddress: getContractAddress(),
-    ownerAddress: getOwnerAddress(),
-    chainId: getChainId(),
+    contractAddress: contractAddress,
+    DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
   };
 };
 
@@ -58,10 +74,8 @@ const getEnvironmentType = (): EnvironmentType => {
  * like `return "production"` (assuming `process.env.NODE_ENV` equals `production`).
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
-const getChainId = (): ChainId => (process.env.REACT_APP_CHAIN_ID as ChainId) ?? ChainId.ETHEREUM;
-const getMoralisURL = (): string => process.env.REACT_APP_MORALIS_SERVER_URL!;
-const getMoralisAppId = (): string => process.env.REACT_APP_MORALIS_APP_ID!;
 const getContractAddress = (): string => process.env.REACT_APP_CONTRACT_ADDRESS!;
-const getOwnerAddress = (): string => process.env.REACT_APP_OWNER_ADDRESS!;
+const getAlchemyUrl = (): string => process.env.REACT_APP_ALCHEMY_URL!;
+const getIsLocalNode = (): boolean => process.env.REACT_APP_LOCAL_NODE! === 'true';
 
 export const Config: Readonly<FrontendConfig> = computeConfig();
