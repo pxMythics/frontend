@@ -1,4 +1,4 @@
-import { AppBar as MuiAppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, Menu, MenuItem, Toolbar } from '@mui/material';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import { Box } from 'components/base/box';
 import { MintButton, MintButtonStyle } from 'components/mint/mint-button';
@@ -6,7 +6,6 @@ import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const MobileMenu: React.FunctionComponent = () => {
@@ -129,14 +128,5 @@ const StyledMenu = styled(({ color, ...rest }) => <Menu {...rest} />)<{ color: s
   && .MuiPaper-root {
     border-radius: 0;
     background-color: ${(props): string => props.color};
-  }
-`;
-
-const StyledIconButton = styled(IconButton)``;
-
-const BiggerFontLink = styled(Link)`
-  font-size: 18px;
-  > button {
-    font-size: 18px;
   }
 `;

@@ -1,4 +1,4 @@
-import { Config as DAppConfig, Hardhat, Localhost, Mainnet, Rinkeby } from '@usedapp/core';
+import { Config as DAppConfig, Hardhat, Mainnet, Rinkeby } from '@usedapp/core';
 
 enum EnvironmentType {
   DEBUG = 'debug',

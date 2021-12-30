@@ -58,7 +58,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
 
   const buttonDisabled = useCallback(
     () => isLoading() || !isNil(error) || mintType === MintType.NONE || limitReached(),
-    [isLoading, mintType, error],
+    [isLoading, mintType, error, limitReached],
   );
 
   const onMintClick = useCallback(
@@ -72,7 +72,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
         {t(buttonTitleKey(), { count: mintCount })}
       </StyledButton>
       {mintType !== MintType.NONE && (
-        <Modal open={true}>
+        <Modal open={modalShown}>
           <MinterSwitch
             mintType={mintType}
             mintCount={mintCount}

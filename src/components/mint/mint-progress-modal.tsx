@@ -3,16 +3,34 @@ import checkmark from 'assets/img/check_circle.png';
 import loadingGif from 'assets/img/mint-gif.gif';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
-import React from 'react';
+import { isNil } from 'ramda';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 interface Props {
   isMinting: boolean;
+  onTransactionDone?: VoidFunction;
 }
 
-export const MintProgressModal: React.FunctionComponent<Props> = ({ isMinting }) => {
+export const MintProgressModal: React.FunctionComponent<Props> = ({
+  isMinting,
+  onTransactionDone,
+}) => {
   const { t } = useTranslation();
+  const timeout = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    if (isMinting) {
+      timeout.current = setTimeout(() => onTransactionDone?.(), 3000);
+    }
+    return () => {
+      if (!isNil(timeout.current)) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, [isMinting, onTransactionDone]);
+
   return (
     <Container>
       <ImageContainer>
