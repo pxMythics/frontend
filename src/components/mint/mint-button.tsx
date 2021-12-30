@@ -72,8 +72,14 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
         {t(buttonTitleKey(), { count: mintCount })}
       </StyledButton>
       {mintType !== MintType.NONE && (
-        <Modal open={modalShown}>
-          <MinterSwitch mintType={mintType} mintCount={mintCount} nonce={nonce} proof={proof} />
+        <Modal open={true}>
+          <MinterSwitch
+            mintType={mintType}
+            mintCount={mintCount}
+            nonce={nonce}
+            proof={proof}
+            onTransactionDone={hideModal}
+          />
         </Modal>
       )}
     </>

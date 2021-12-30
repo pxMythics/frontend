@@ -31,5 +31,12 @@ export const en = {
         },
       },
     },
+    mintModal: {
+      altGif: 'minting...',
+      altCheckmark: 'done',
+      mintingText: 'The power of the gods is yours to claim...',
+      mintingSubtext: 'are you ready?',
+      approvedText: 'A mythic being has awakened within your wallet',
+    },
   },
 };

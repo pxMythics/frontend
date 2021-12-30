@@ -1,5 +1,5 @@
 import { useContractFunction } from '@usedapp/core';
-import { Box } from 'components/base/box';
+import { MintProgressModal } from 'components/mint/mint-progress-modal';
 import { mintPrice } from 'constant';
 import { ethers } from 'ethers';
 import { useContract } from 'hooks/use-contract';
@@ -22,11 +22,10 @@ export const WLMinter: React.FunctionComponent<Props> = ({ nonce, proof, onTrans
   }, []);
 
   useEffect(() => {
-    console.log(`transaction state is ${state?.status} with error ${state?.errorMessage}`);
     if (!isNil(state) && state?.status !== 'Mining' && state?.status !== 'None') {
       onTransactionDone?.(state?.errorMessage);
     }
   }, [state]);
 
-  return <Box>{'minting'}</Box>;
+  return <MintProgressModal isMinting={state?.status === 'Mining'} />;
 };

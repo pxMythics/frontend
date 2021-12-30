@@ -1,5 +1,5 @@
 import { useContractFunction } from '@usedapp/core';
-import { Box } from 'components/base/box';
+import { MintProgressModal } from 'components/mint/mint-progress-modal';
 import { useContract } from 'hooks/use-contract';
 import isNil from 'ramda/src/isNil';
 import React, { useEffect } from 'react';
@@ -25,5 +25,5 @@ export const FreeMinter: React.FunctionComponent<Props> = ({ mintCount, onTransa
     }
   }, [state]);
 
-  return <Box>{'minting'}</Box>;
+  return <MintProgressModal isMinting={state?.status === 'Mining'} />;
 };

@@ -15,12 +15,8 @@ export const Modal: React.FunctionComponent<ModalProps> = ({ children, ...rest }
 
 const CenteredBox = styled(Box)`
   align-items: center;
-  background-color: black;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 500px;
   transform: translate(-50%, -50%);
-  padding: 40px;
-  border-radius: 20px;
 `;
