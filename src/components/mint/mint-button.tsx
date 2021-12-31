@@ -56,8 +56,12 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
   }, [account, error, mintType, isLoading, limitReached, size]);
 
   const buttonDisabled = useCallback(
-    () => isLoading() || (!isNil(error) && mintType === MintType.NONE) || limitReached(),
-    [isLoading, mintType, error, limitReached],
+    () =>
+      !isNilOrEmpty(account) ||
+      isLoading() ||
+      (!isNil(error) && mintType === MintType.NONE) ||
+      limitReached(),
+    [account, isLoading, mintType, error, limitReached],
   );
 
   const onMintClick = useCallback(
