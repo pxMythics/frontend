@@ -7,7 +7,8 @@ html, body, #root {
 
 @font-face {
   font-family: 'Press Start 2P';
-  src: local('Press Start 2P'), url(assets/fonts/press-start-2p.ttf) format('truetype');
+  src: local('Press Start 2P'), url(./assets/fonts/press-start-2p.ttf) format('truetype');
+  font-weight: normal;
 }
 
 /*

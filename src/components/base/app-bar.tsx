@@ -14,13 +14,7 @@ import { isMobileMenuOpen } from 'service/state';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const MobileMenu: React.FunctionComponent = () => {
-  const { t } = useTranslation();
-  const onMobile = useOnMobile();
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
-
-  if (!onMobile) {
-    return null;
-  }
 
   return (
     <MobileMenuContainer>
@@ -35,12 +29,7 @@ const MobileMenu: React.FunctionComponent = () => {
 };
 
 const DesktopMenu: React.FunctionComponent = (props) => {
-  const onMobile = useOnMobile();
   const { t } = useTranslation();
-
-  if (onMobile) {
-    return null;
-  }
 
   return (
     <DesktopMenuContainer {...props}>
@@ -64,19 +53,19 @@ const DesktopMenu: React.FunctionComponent = (props) => {
 };
 
 export const AppBar: React.FunctionComponent = ({ ...rest }) => {
+  const onMobile = useOnMobile();
+
   return (
     <StyledAppBar position="sticky" color={'transparent'} {...rest}>
-      <StyledToolbar>
-        <MobileMenu />
-        <DesktopMenu />
-      </StyledToolbar>
+      <AppToolbar>{onMobile ? <MobileMenu /> : <DesktopMenu />}</AppToolbar>
     </StyledAppBar>
   );
 };
 
-const StyledToolbar = styled(Toolbar)`
+const AppToolbar = styled(Toolbar)`
   && {
     align-items: center;
+    justify-content: center;
     background: ${(props): FlattenSimpleInterpolation | null => css`
       linear-gradient(180deg, 
         ${props.theme.palette.secondaryGradientStart.main} 0%, 
@@ -85,10 +74,7 @@ const StyledToolbar = styled(Toolbar)`
     mix-blend-mode: normal;
     box-shadow: 0 9px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6px);
-    min-height: 82px;
-    ${(props): string => props.theme.mediaQueries.desktop} {
-      min-height: 90px;
-    }
+    height: 82px;
   }
 `;
 
@@ -99,9 +85,7 @@ const StyledAppBar = styled(MuiAppBar)`
 `;
 
 const DesktopMenuContainer = styled(Box)`
-  flex: 1;
-  margin-left: 184px;
-  margin-right: 184px;
+  flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
 `;
