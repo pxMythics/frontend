@@ -38,5 +38,10 @@ export const en = {
       mintingSubtext: 'are you ready?',
       approvedText: 'A mythic being has awakened within your wallet',
     },
+    alert: {
+      invalidChain:
+        'You are currently on {{invalidNetworkName}} (chain id: {{invalidNetworkId}}), please change network to {{validNetworkName}} (chain id: {{validNetworkId}})',
+      or: 'or ',
+    },
   },
 };

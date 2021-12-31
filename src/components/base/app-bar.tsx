@@ -1,44 +1,36 @@
-import { AppBar as MuiAppBar, Menu, MenuItem, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, IconButton, MenuItem, Toolbar } from '@mui/material';
+import { ReactComponent as DiscordLogo } from 'assets/img/discord-icon.svg';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
+import hamburgerMenu from 'assets/img/navbar_mobile_icon-menu.png';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
-import { ReactComponent as DiscordLogo } from 'assets/img/discord-icon.svg';
 import { Box } from 'components/base/box';
-import { MintButton, MintButtonStyle } from 'components/mint/mint-button';
+import { MintButton } from 'components/mint/mint-button';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
-import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
+import { useRecoilState } from 'recoil';
+import { isMobileMenuOpen } from 'service/state';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const MobileMenu: React.FunctionComponent = () => {
   const { t } = useTranslation();
   const onMobile = useOnMobile();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const menuOpen = Boolean(anchorEl);
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
 
   if (!onMobile) {
     return null;
   }
 
   return (
-    <>
-      <StyledMenu
-        anchorEl={anchorEl}
-        open={menuOpen}
-        onClose={closeMenu}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <StyledMenuItem>{t('menu.artists')}</StyledMenuItem>
-        <StyledMenuItem>{t('menu.about')}</StyledMenuItem>
-        {!isMobile && <MenuItem />}
-      </StyledMenu>
-    </>
+    <MobileMenuContainer>
+      <FixedHeightBox>
+        <Logo />
+      </FixedHeightBox>
+      <AbsolutePositionIconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <img src={hamburgerMenu} alt={'Menu'} />
+      </AbsolutePositionIconButton>
+    </MobileMenuContainer>
   );
 };
 
@@ -66,7 +58,7 @@ const DesktopMenu: React.FunctionComponent = (props) => {
         <DiscordLogo />
         <TwitterLogo />
       </LinkContainer>
-      <MintButton style={MintButtonStyle.SHORT} />
+      <MintButton />
     </DesktopMenuContainer>
   );
 };
@@ -143,9 +135,13 @@ const LinkContainer = styled(Box)`
   }
 `;
 
-const StyledMenu = styled(({ color, ...rest }) => <Menu {...rest} />)<{ color: string }>`
-  && .MuiPaper-root {
-    border-radius: 0;
-    background-color: ${(props): string => props.color};
-  }
+const MobileMenuContainer = styled(Box)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AbsolutePositionIconButton = styled(IconButton)`
+  position: absolute;
+  right: 0;
 `;
