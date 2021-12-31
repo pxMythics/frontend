@@ -48,15 +48,15 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
         suffix = `whitelist.${limitReached() ? 'disabled' : 'enabled'}`;
       }
     }
-    if (error || mintType === MintType.NONE) {
-      logger.error(`Got error on fetching token ${error}`);
+    if (error && mintType === MintType.NONE) {
+      logger.error(`Got error on fetching mint access: ${error}`);
       suffix = 'disabled';
     }
     return `${prefix}.${suffix}`;
   }, [account, error, mintType, isLoading, limitReached, size]);
 
   const buttonDisabled = useCallback(
-    () => isLoading() || !isNil(error) || mintType === MintType.NONE || limitReached(),
+    () => isLoading() || (!isNil(error) && mintType === MintType.NONE) || limitReached(),
     [isLoading, mintType, error, limitReached],
   );
 
