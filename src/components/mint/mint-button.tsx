@@ -19,7 +19,7 @@ interface Props {
 
 export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) => {
   const { t } = useTranslation();
-  const { logger } = useLogger();
+  const logger = useLogger();
   const { activateBrowserWallet, account } = useEthers();
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
   const [modalShown, showModal, hideModal] = useModalControls();
