@@ -6,6 +6,7 @@ import { useMintAccess } from 'hooks/use-mint-access';
 import { useModalControls } from 'hooks/use-modal-controls';
 import { useTokenBalance } from 'hooks/use-token-balance';
 import { MintType } from 'model/api/mint-response';
+import { useLogger } from 'provider/logger-provider';
 import { isNil } from 'ramda';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +19,7 @@ interface Props {
 
 export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) => {
   const { t } = useTranslation();
+  const { logger } = useLogger();
   const { activateBrowserWallet, account } = useEthers();
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
   const [modalShown, showModal, hideModal] = useModalControls();
@@ -47,6 +49,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
       }
     }
     if (error || mintType === MintType.NONE) {
+      logger.error(`Got error on fetching token ${error}`);
       suffix = 'disabled';
     }
     return `${prefix}.${suffix}`;
