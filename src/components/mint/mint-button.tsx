@@ -12,15 +12,11 @@ import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { isNilOrEmpty } from 'utils/ramda-utils';
 
-export enum MintButtonStyle {
-  LONG = 'long',
-  SHORT = 'short',
-}
 interface Props {
-  style: MintButtonStyle;
+  size?: 'long' | 'short';
 }
 
-export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
+export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) => {
   const { t } = useTranslation();
   const { activateBrowserWallet, account } = useEthers();
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
@@ -39,7 +35,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
   }, [mintType, tokenBalance, mintCount]);
 
   const buttonTitleKey = useCallback(() => {
-    const prefix = `mintButton.${style}`;
+    const prefix = `mintButton.${size}`;
     let suffix = 'notConnected';
     if (!isNilOrEmpty(account) && isNil(error)) {
       if (isLoading()) {
@@ -54,7 +50,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ style }) => {
       suffix = 'disabled';
     }
     return `${prefix}.${suffix}`;
-  }, [account, error, mintType, isLoading, limitReached, style]);
+  }, [account, error, mintType, isLoading, limitReached, size]);
 
   const buttonDisabled = useCallback(
     () => isLoading() || !isNil(error) || mintType === MintType.NONE || limitReached(),
