@@ -6,7 +6,7 @@ export const useBackendClient = (): Axios =>
   useMemo(
     () =>
       new Axios({
-        baseURL: Config.backendUrl,
+        baseURL: Config.apiUrl,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',

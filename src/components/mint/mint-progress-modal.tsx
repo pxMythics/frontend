@@ -22,7 +22,7 @@ export const MintProgressModal: React.FunctionComponent<Props> = ({
   const timeout = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    if (isMinting) {
+    if (!isMinting) {
       timeout.current = setTimeout(() => onTransactionDone?.(), 3000);
     }
     return () => {

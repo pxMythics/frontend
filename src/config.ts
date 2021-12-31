@@ -9,15 +9,11 @@ interface FrontendConfig {
   isDebug: boolean;
   isProduction: boolean;
   contractAddress: string;
-  backendUrl: string;
+  apiUrl: string;
   DAppConfig: DAppConfig;
 }
 
 const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig => {
-  const multicallAddresses = {
-    [Mainnet.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
-    [Rinkeby.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696',
-  };
   return isStaging
     ? getIsLocalNode()
       ? {
@@ -29,13 +25,11 @@ const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig =
           readOnlyChainId: Rinkeby.chainId,
           readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
           networks: [Rinkeby],
-          multicallAddresses: { ...multicallAddresses },
         }
     : {
         readOnlyChainId: Mainnet.chainId,
         readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
         networks: [Mainnet],
-        multicallAddresses: { ...multicallAddresses },
       };
 };
 const computeConfig = (): FrontendConfig => {
@@ -44,19 +38,20 @@ const computeConfig = (): FrontendConfig => {
   console.info('Build type [%s].', buildType);
 
   // Fetch config from injected config when in prod (see index.html)
-  const { alchemyUrl, contractAddress, isStaging, backendUrl } = window.CONFIG || {
+  const { alchemyUrl, contractAddress, isStaging, apiUrl } = window.CONFIG || {
     alchemyUrl: getAlchemyUrl(),
     contractAddress: getContractAddress(),
-    backendUrl: getBackendUrl(),
+    apiUrl: getBackendUrl(),
     // More or less a hack, we want to be on rinkeby on staging but we don't pass the environment type
     // we inject it directly in the config
     isStaging: buildType === EnvironmentType.DEBUG,
   };
+
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     isProduction: buildType === EnvironmentType.PROD,
-    contractAddress: contractAddress,
-    backendUrl,
+    contractAddress: contractAddress || '0x976f87a62e8e2a9408E55D009d1022b5Ba8516f7',
+    apiUrl,
     DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
   };
 };
