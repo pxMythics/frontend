@@ -22,7 +22,7 @@ export const WLMinter: React.FunctionComponent<Props> = ({ nonce, proof, onTrans
 
   return (
     <MintProgressModal
-      isMinting={state?.status === 'Mining'}
+      isMinting={state?.status === 'Mining' || state?.status === 'None'}
       onTransactionDone={() => onTransactionDone?.(state?.errorMessage)}
     />
   );
