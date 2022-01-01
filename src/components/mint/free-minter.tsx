@@ -1,5 +1,6 @@
 import { useContractFunction } from '@usedapp/core';
 import { MintProgressModal } from 'components/mint/mint-progress-modal';
+import { ethers } from 'ethers';
 import { useContract } from 'hooks/use-contract';
 import React, { useEffect } from 'react';
 
@@ -15,7 +16,7 @@ export const FreeMinter: React.FunctionComponent<Props> = ({ mintCount, onTransa
 
   // Send transaction on mount
   useEffect(() => {
-    send(mintCount);
+    send(mintCount, { gasLimit: ethers.utils.hexlify(150000 * mintCount) });
   }, []);
 
   return (
