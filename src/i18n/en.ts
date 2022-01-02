@@ -33,10 +33,13 @@ export const en = {
     },
     mintModal: {
       altGif: 'minting...',
+      altGifSuccess: 'success!',
       altCheckmark: 'done',
       mintingText: 'The power of the gods is yours to claim...',
       mintingSubtext: 'are you ready?',
       approvedText: 'A mythic being has awakened within your wallet',
+      failText: 'Your mythical being failed to awaken...',
+      failSubtext: 'Try again or open a ticket in the discord so we can assist you',
     },
     alert: {
       invalidChain:

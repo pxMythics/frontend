@@ -1,5 +1,6 @@
 import { useContractFunction } from '@usedapp/core';
 import { MintProgressModal } from 'components/mint/mint-progress-modal';
+import { freeMintGasPrice } from 'constant';
 import { ethers } from 'ethers';
 import { useContract } from 'hooks/use-contract';
 import React, { useEffect } from 'react';
@@ -16,12 +17,12 @@ export const FreeMinter: React.FunctionComponent<Props> = ({ mintCount, onTransa
 
   // Send transaction on mount
   useEffect(() => {
-    send(mintCount, { gasLimit: ethers.utils.hexlify(150000 * mintCount) });
+    send(mintCount, { gasLimit: ethers.utils.hexlify(freeMintGasPrice * mintCount) });
   }, []);
-
   return (
     <MintProgressModal
       isMinting={state?.status === 'Mining' || state?.status === 'None'}
+      hasFailed={state?.status === 'Fail' || state?.status === 'Exception'}
       onTransactionDone={() => onTransactionDone?.(state?.errorMessage)}
     />
   );

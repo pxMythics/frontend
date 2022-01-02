@@ -70,7 +70,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
   return (
     <>
       <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
-        {t(buttonTitleKey(), { count: mintCount })}
+        {t(buttonTitleKey(), { count: (mintCount ?? 0) - (tokenBalance ?? 0) })}
       </StyledButton>
       {mintType !== MintType.NONE && (
         <Modal open={modalShown}>
