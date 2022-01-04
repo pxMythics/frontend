@@ -1,24 +1,76 @@
-import { Box } from 'components/base/box';
-import React from 'react';
-import styled from 'styled-components';
+import { Typography } from '@mui/material';
 import background from 'assets/img/hero-background.png';
+import thor from 'assets/img/thor.gif';
+import { Box } from 'components/base/box';
+import { Column } from 'components/base/column';
+import { ContainerWithShadow } from 'components/base/container-with-shadow';
+import { MintButton } from 'components/mint/mint-button';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { ReactComponent as Logo } from 'assets/img/logo.svg';
 
-interface Props {}
-
-export const HeroSection: React.FunctionComponent<Props> = () => {
+export const HeroSection: React.FunctionComponent = () => {
+  const { t } = useTranslation();
   return (
     <Container>
-      <Background src={background} alt={'test'} />
+      <ContainerWithShadow>
+        <ImageContainer>
+          <img src={thor} alt={t('hero.thorAlt')} />
+        </ImageContainer>
+      </ContainerWithShadow>
+      <CenteredColumn>
+        <StyledTypography variant={'h2'}>{t('hero.title')}</StyledTypography>
+        <FullWidthLogo>
+          <Logo />
+        </FullWidthLogo>
+        <Typography variant={'h3'}>{t('hero.subtitle')}</Typography>
+      </CenteredColumn>
+      <ContainerWithShadow>
+        <MintButton size={'long'} />
+      </ContainerWithShadow>
     </Container>
   );
 };
 
-const Container = styled(Box)`
+const Container = styled(Column)`
+  padding-top: 120px;
   height: 870px;
+  background: url(${background});
+  background-size: cover;
+  align-items: center;
 `;
 
-const Background = styled.img`
+const ImageContainer = styled(Box)`
+  width: 290px;
+  height: 290px;
+  border: 3px solid
+    ${(props): FlattenSimpleInterpolation | null => css`
+      ${props.theme.palette.primaryGradientFinish.main}
+    `};
+  border-radius: 25px;
+  overflow: hidden;
+`;
+
+const CenteredColumn = styled(Column)`
+  align-items: center;
+  padding-bottom: 40px;
+`;
+
+const FullWidthLogo = styled(Box)`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  justify-content: center;
+  position: absolute;
+  top: 24px;
+  > svg {
+    width: 80%;
+    height: 100%;
+  }
+`;
+
+const StyledTypography = styled(Typography)`
+  padding-bottom: 88px;
+  color: ${(props): FlattenSimpleInterpolation | null => css`
+    ${props.theme.palette.primary.main}
+  `};
 `;

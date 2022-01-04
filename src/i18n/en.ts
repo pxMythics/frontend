@@ -46,5 +46,10 @@ export const en = {
         'You are currently on {{invalidNetworkName}} (chain id: {{invalidNetworkId}}), please change network to {{validNetworkName}} (chain id: {{validNetworkId}})',
       or: 'or ',
     },
+    hero: {
+      thorAlt: 'Thor',
+      title: 'ENTER THE',
+      subtitle: 'UNIVERSE',
+    },
   },
 };

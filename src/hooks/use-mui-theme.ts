@@ -85,6 +85,18 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
         },
         typography: {
           fontFamily: 'Press Start 2P, Roboto',
+          h2: {
+            fontFamily: `'Press Start 2P'`,
+            fontSize: '80px',
+            lineHeight: '80px',
+            color: 'white',
+          },
+          h3: {
+            fontFamily: `'Press Start 2P'`,
+            fontSize: '60px',
+            lineHeight: '60px',
+            color: '#0049B5',
+          },
           body2: {
             fontWeight: 500,
             fontSize: '20px',
@@ -94,6 +106,9 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
             fontFamily: `'Press Start 2P'`,
             fontSize: '20px',
             color: 'white',
+          },
+          button: {
+            textTransform: 'unset',
           },
         },
       }),

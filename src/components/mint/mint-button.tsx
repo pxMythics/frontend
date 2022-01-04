@@ -6,8 +6,7 @@ import { useMintAccess } from 'hooks/use-mint-access';
 import { useModalControls } from 'hooks/use-modal-controls';
 import { useTokenBalance } from 'hooks/use-token-balance';
 import { MintType } from 'model/api/mint-response';
-import { useLogger } from 'provider/logger-provider';
-import { isNil } from 'ramda';
+import { head, isNil } from 'ramda';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
@@ -19,7 +18,6 @@ interface Props {
 
 export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) => {
   const { t } = useTranslation();
-  const logger = useLogger();
   const { activateBrowserWallet, account } = useEthers();
   const { fetching, mintType, mintCount, proof, nonce, error } = useMintAccess();
   const [modalShown, showModal, hideModal] = useModalControls();
@@ -68,7 +66,12 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
 
   return (
     <>
-      <StyledButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
+      <StyledButton
+        onClick={onMintClick}
+        disabled={buttonDisabled()}
+        variant="contained"
+        isLong={size === 'long'}
+      >
         {t(buttonTitleKey(), { count: (mintCount ?? 0) - (tokenBalance ?? 0) })}
       </StyledButton>
       {mintType !== MintType.NONE && (
@@ -86,7 +89,9 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
   );
 };
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(({ isLong, ...renderProps }) => <Button {...renderProps} />)<{
+  isLong: boolean;
+}>`
   && {
     background: ${(props): FlattenSimpleInterpolation | null => css`
       linear-gradient(180deg,
@@ -98,7 +103,21 @@ const StyledButton = styled(Button)`
     mix-blend-mode: normal;
     box-shadow: 0 4px 4px rgba(90, 103, 214, 0.25);
     border-radius: 12px;
-    height: 40px;
     min-width: 120px;
+    ${(props) => {
+      if (props.isLong) {
+        return css`
+          height: 60px;
+          border: 2px solid #ffffff;
+          font-weight: bold;
+          font-size: 18px;
+        `;
+      } else {
+        return css`
+          height: 40px;
+          font-size: 16px;
+        `;
+      }
+    }};
   }
 `;
