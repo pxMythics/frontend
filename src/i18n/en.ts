@@ -154,5 +154,48 @@ export const en = {
         },
       },
     },
+    team: {
+      title: 'THE TEAM',
+      vitruvian: {
+        name: '0xVitruvian',
+        title: 'Loremaster & Community Manager',
+      },
+      snotty: {
+        name: 'Snotty',
+        title: 'Creative Partner',
+      },
+      gabey: {
+        name: 'Gabey',
+        title: 'Developer',
+      },
+      johnny: {
+        name: 'Johnny',
+        title: 'Developer',
+      },
+      matt: {
+        name: 'Matt',
+        title: 'Developer',
+      },
+      kenzit: {
+        name: 'Kenzith',
+        title: 'Artist',
+      },
+      nicolle: {
+        name: 'Nicolle',
+        title: 'Artist',
+      },
+      bill: {
+        name: 'Bill',
+        title: 'Artist',
+      },
+      kaz: {
+        name: 'Kaz',
+        title: 'Founder & Project Lead',
+      },
+      renaissance: {
+        name: '0xRen',
+        title: 'Creative Consultant & Project Lead',
+      },
+    },
   },
 };

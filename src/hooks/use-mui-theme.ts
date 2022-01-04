@@ -140,6 +140,13 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
             lineHeight: '20px',
             color: 'black',
           },
+          caption: {
+            fontFamily: `'Press Start 2P'`,
+            fontSize: '24px',
+            lineHeight: '24px',
+            color: 'white',
+          },
+
           button: {
             textTransform: 'unset',
           },
