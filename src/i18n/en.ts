@@ -68,5 +68,13 @@ export const en = {
       altAnubis: 'Anubis',
       altOdin: 'Odin',
     },
+    roadmap: {
+      title: 'ROADMAP',
+      subtitle: '1,000 Mythic Genesis | 0.077 Mint price',
+      subtext1: '$POWER will serve as the foundation for the pxMythics universe and NFT ecosystem',
+      subtext2:
+        'All present and future plans + utility will be accessed by using this native token.',
+      elipseAlt: 'Roadmap',
+    },
   },
 };

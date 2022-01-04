@@ -95,6 +95,7 @@ const TextContainer = styled(Column)`
   margin-left: 32px;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-bottom: 32px;
 `;
 
 const PaddedColumn = styled(Column)`
