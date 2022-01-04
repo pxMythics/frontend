@@ -197,5 +197,8 @@ export const en = {
         title: 'Creative Consultant & Project Lead',
       },
     },
+    footer: {
+      copyright: '© 2021 pxMythics all rights reserved.',
+    },
   },
 };
