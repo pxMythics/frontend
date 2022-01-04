@@ -108,6 +108,18 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
             fontSize: '48px',
             lineHeight: '56px',
           },
+          h5: {
+            fontWeight: 700,
+            fontSize: '24px',
+            lineHeight: '28px',
+            color: 'black',
+          },
+          h6: {
+            fontFamily: `'Press Start 2P'`,
+            fontSize: '44px',
+            lineHeight: '54px',
+            color: '#5A3A71',
+          },
           body1: {
             fontSize: '18px',
             lineHeight: '22px',
@@ -122,6 +134,11 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
             fontFamily: `'Press Start 2P'`,
             fontSize: '20px',
             color: 'white',
+          },
+          subtitle2: {
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: 'black',
           },
           button: {
             textTransform: 'unset',

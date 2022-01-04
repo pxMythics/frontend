@@ -2,7 +2,6 @@ import { useEthers } from '@usedapp/core';
 import { MintResponse, MintType } from 'model/api/mint-response';
 import { useHttpClient } from 'provider/http-client-provider';
 import { useLogger } from 'provider/logger-provider';
-import { isNil } from 'ramda';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { isNilOrEmpty } from 'utils/ramda-utils';
 

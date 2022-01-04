@@ -5,20 +5,20 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import bottomBackground from 'assets/img/roadmap-background-bottom.png';
-import elipse from 'assets/img/roadmap-elipse.png';
+import elipse from 'assets/img/roadmap-top-elipse.png';
 
 export const RoadmapTopSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <Column>
       <TopContainer>
-        <PaddedTitle variant={'h1'}>{t('roadmap.title')}</PaddedTitle>
-        <PaddedSubtitle variant={'h4'}>{t('roadmap.subtitle')}</PaddedSubtitle>
-        <Typography variant={'body1'}>{t('roadmap.subtext1')}</Typography>
-        <Typography variant={'body1'}>{t('roadmap.subtext2')}</Typography>
+        <PaddedTitle variant={'h1'}>{t('roadmap.top.title')}</PaddedTitle>
+        <PaddedSubtitle variant={'h4'}>{t('roadmap.top.subtitle')}</PaddedSubtitle>
+        <Typography variant={'body1'}>{t('roadmap.top.subtext1')}</Typography>
+        <Typography variant={'body1'}>{t('roadmap.top.subtext2')}</Typography>
       </TopContainer>
       <AbsolutePosContainer>
-        <img src={elipse} alt={t('roadmap.elipseAlt')} />
+        <img src={elipse} alt={t('roadmap.top.elipseAlt')} />
       </AbsolutePosContainer>
       <BottomContainer />
     </Column>
@@ -35,11 +35,11 @@ const TopContainer = styled(Column)`
 `;
 
 const BottomContainer = styled(Column)`
-  padding-top: 120px;
   height: 488px;
   background: url(${bottomBackground});
   background-size: cover;
   align-items: center;
+  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.15));
 `;
 
 const PaddedTitle = styled(Typography)`
