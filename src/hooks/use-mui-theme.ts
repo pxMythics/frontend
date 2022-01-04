@@ -30,6 +30,9 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
           secondary: {
             main: '#FF7373',
           },
+          info: {
+            main: '#f8da3e',
+          },
           primaryGradientStart: {
             main: '#2081E2',
           },
@@ -41,6 +44,9 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
           },
           secondaryGradientFinish: {
             main: '#FF7373',
+          },
+          action: {
+            disabled: '#FF7373',
           },
         },
         breakpoints: {
@@ -79,6 +85,16 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
         },
         typography: {
           fontFamily: 'Press Start 2P, Roboto',
+          body2: {
+            fontWeight: 500,
+            fontSize: '20px',
+            color: 'white',
+          },
+          subtitle1: {
+            fontFamily: `'Press Start 2P'`,
+            fontSize: '20px',
+            color: 'white',
+          },
         },
       }),
     [],

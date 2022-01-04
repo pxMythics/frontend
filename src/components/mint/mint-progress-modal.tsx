@@ -75,7 +75,7 @@ export const MintProgressModal: React.FunctionComponent<Props> = ({
           alt={t(!isMinting && !hasFailed ? 'mintModal.altGifSuccess' : 'mintModal.altGif')}
         />
       </ImageContainer>
-      {getModalText()}
+      <PaddedColumn>{getModalText()}</PaddedColumn>
       <PaddedBox>{getIcon()}</PaddedBox>
     </Container>
   );
@@ -84,7 +84,10 @@ export const MintProgressModal: React.FunctionComponent<Props> = ({
 const Container = styled(Column)`
   align-items: center;
   width: 396px;
-  border: 3px solid #f8da3e;
+  border: 3px solid
+    ${(props): FlattenSimpleInterpolation | null => css`
+      ${props.theme.palette.info.main}
+    `};
   border-radius: 20px;
   background: ${(props): FlattenSimpleInterpolation | null => css`
     ${props.theme.palette.primaryGradientStart.main}
@@ -94,7 +97,7 @@ const Container = styled(Column)`
 const ImageContainer = styled(Box)`
   height: 300px;
   width: 300px;
-  border: 2px solid #ffffff;
+  border: 2px solid white;
   box-sizing: border-box;
   border-radius: 20px;
   margin: 48px;
@@ -105,6 +108,12 @@ const StyledImg = styled.img`
   max-height: 100%;
   max-width: 100%;
 `;
+
+const PaddedColumn = styled(Column)`
+  text-align: center;
+  padding: 0 24px;
+`;
+
 const PaddedTypography = styled(Typography)`
   padding-bottom: 10px;
 `;

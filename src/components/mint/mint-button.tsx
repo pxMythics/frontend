@@ -49,7 +49,6 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
       }
     }
     if (error && mintType === MintType.NONE) {
-      logger.error(`Got error on fetching mint access: ${error}`);
       suffix = 'disabled';
     }
     return `${prefix}.${suffix}`;

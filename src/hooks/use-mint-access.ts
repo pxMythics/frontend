@@ -29,8 +29,15 @@ export const useMintAccess = (): MintAccess => {
     httpClient
       .post<MintResponse>('mint', { address: account })
       .then((res) => {
-        if (!isNil(res.data)) {
+        if (
+          res.data &&
+          res.data?.mint &&
+          (res.data?.mint_count || (res.data?.nonce && res.data?.proof))
+        ) {
           mintAccess.current = res.data;
+        } else {
+          logger.error(`error fetching mint access: ${JSON.stringify(res.data)}`);
+          fetchError.current = new Error(JSON.stringify(res.data));
         }
         setFetching(false);
       })
@@ -43,7 +50,8 @@ export const useMintAccess = (): MintAccess => {
 
   useEffect(() => {
     if (!isNilOrEmpty(account) && !fetching) {
-      mintAccess.current = undefined;
+      mintAccess.current = null;
+      fetchError.current = null;
       setFetching(true);
       fetchMintAccess();
     }
