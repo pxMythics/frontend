@@ -97,6 +97,11 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
             lineHeight: '60px',
             color: '#0049B5',
           },
+          body1: {
+            fontSize: '18px',
+            lineHeight: '22px',
+            color: 'white',
+          },
           body2: {
             fontWeight: 500,
             fontSize: '20px',

@@ -21,9 +21,9 @@ export const HeroSection: React.FunctionComponent = () => {
       </ContainerWithShadow>
       <CenteredColumn>
         <StyledTypography variant={'h2'}>{t('hero.title')}</StyledTypography>
-        <FullWidthLogo>
+        <AbsolutePosLogo>
           <Logo />
-        </FullWidthLogo>
+        </AbsolutePosLogo>
         <Typography variant={'h3'}>{t('hero.subtitle')}</Typography>
       </CenteredColumn>
       <ContainerWithShadow>
@@ -57,7 +57,7 @@ const CenteredColumn = styled(Column)`
   padding-bottom: 40px;
 `;
 
-const FullWidthLogo = styled(Box)`
+const AbsolutePosLogo = styled(Box)`
   width: 100%;
   justify-content: center;
   position: absolute;

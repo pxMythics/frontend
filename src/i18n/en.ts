@@ -51,5 +51,22 @@ export const en = {
       title: 'ENTER THE',
       subtitle: 'UNIVERSE',
     },
+    about: {
+      title: 'ABOUT',
+      text1:
+        'pxMythics is an NFT project based on the greatest mythologies to ever exist within the world.',
+      text2:
+        'A powerhouse blend of the ancient past, and the rapidly approaching future –- with some of the greatest myths and legends ever told being immortalized even further onto the greatest technologies the world has ever seen.',
+      text3:
+        'Both the 1,000 supply Mythic Genesis collection and the following 6,111 Mythic creatures collection will generate $POWER - the native token within the pxMythics Universe.',
+      text4:
+        '$POWER will initially be used to ascend worthy creatures into the ethereal world of the Gods, demigods, and elementals –– but that is not where its use case stops. $POWER will be the core of the ever expanding, ever evolving, pxMythics NFT ecosystem.',
+      altShiva: 'Shiva',
+      altChaac: 'Chaac',
+      altRaijin: 'Raijin',
+      altKaishen: 'Kaishen',
+      altAnubis: 'Anubis',
+      altOdin: 'Odin',
+    },
   },
 };
