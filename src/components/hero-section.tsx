@@ -34,6 +34,7 @@ export const HeroSection: React.FunctionComponent = () => {
       content: <ImageSlide src={value[1]} alt={t(`hero.${value[0]}Alt`)} />,
     }),
   );
+
   return (
     <Container>
       <CarouselContainer>
@@ -55,7 +56,10 @@ export const HeroSection: React.FunctionComponent = () => {
 
 const Container = styled(Column)`
   padding-top: 120px;
-  height: 870px;
+  height: 660px;
+  ${(props): string => props.theme.mediaQueries.desktop} {
+    height: 870px;
+  }
   background: url(${background});
   background-size: cover;
   align-items: center;
@@ -63,12 +67,19 @@ const Container = styled(Column)`
 
 const CarouselContainer = styled(Box)`
   width: 30%;
-  height: 360px;
+  height: 242px;
+  ${(props): string => props.theme.mediaQueries.desktop} {
+    height: 360px;
+  }
 `;
 
 const ImageContainer = styled(Box)`
-  width: 290px;
-  height: 290px;
+  height: 200px;
+  width: 200px;
+  ${(props): string => props.theme.mediaQueries.desktop} {
+    height: 290px;
+    width: 290px;
+  }
   border: 3px solid
     ${(props): FlattenSimpleInterpolation | null => css`
       ${props.theme.palette.primaryGradientFinish.main}
@@ -94,7 +105,10 @@ const AbsolutePosLogo = styled(Box)`
 `;
 
 const StyledTypography = styled(Typography)`
-  padding-bottom: 88px;
+  ${(props): string => props.theme.mediaQueries.desktop} {
+    padding-bottom: 88px;
+  }
+  padding-bottom: 64px;
   color: ${(props): FlattenSimpleInterpolation | null => css`
     ${props.theme.palette.primary.main}
   `};

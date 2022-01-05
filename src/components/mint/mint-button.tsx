@@ -6,7 +6,7 @@ import { useMintAccess } from 'hooks/use-mint-access';
 import { useModalControls } from 'hooks/use-modal-controls';
 import { useTokenBalance } from 'hooks/use-token-balance';
 import { MintType } from 'model/api/mint-response';
-import { head, isNil } from 'ramda';
+import { isNil } from 'ramda';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
@@ -107,10 +107,14 @@ const StyledButton = styled(({ isLong, ...renderProps }) => <Button {...renderPr
     ${(props) => {
       if (props.isLong) {
         return css`
-          height: 60px;
           border: 2px solid #ffffff;
           font-weight: bold;
-          font-size: 18px;
+          font-size: 12px;
+          height: 40px;
+          ${(props): string => props.theme.mediaQueries.desktop} {
+            height: 60px;
+            font-size: 18px;
+          } ;
         `;
       } else {
         return css`

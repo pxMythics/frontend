@@ -63,12 +63,12 @@ export const en = {
         'Both the 1,000 supply Mythic Genesis collection and the following 6,111 Mythic creatures collection will generate $POWER - the native token within the pxMythics Universe.',
       text4:
         '$POWER will initially be used to ascend worthy creatures into the ethereal world of the Gods, demigods, and elementals –– but that is not where its use case stops. $POWER will be the core of the ever expanding, ever evolving, pxMythics NFT ecosystem.',
-      altShiva: 'Shiva',
-      altChaac: 'Chaac',
-      altRaijin: 'Raijin',
-      altKaishen: 'Kaishen',
-      altAnubis: 'Anubis',
-      altOdin: 'Odin',
+      shiva: 'Shiva',
+      chaac: 'Chaac',
+      raijin: 'Raijin',
+      kaishen: 'Kaishen',
+      anubis: 'Anubis',
+      odin: 'Odin',
     },
     roadmap: {
       top: {

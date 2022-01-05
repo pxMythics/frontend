@@ -56,7 +56,7 @@ export const AppBar: React.FunctionComponent = ({ ...rest }) => {
   const onMobile = useOnMobile();
 
   return (
-    <StyledAppBar position="sticky" color={'transparent'} {...rest}>
+    <StyledAppBar position={'sticky'} color={'transparent'} {...rest}>
       <AppToolbar>{onMobile ? <MobileMenu /> : <DesktopMenu />}</AppToolbar>
     </StyledAppBar>
   );

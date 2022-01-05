@@ -19,8 +19,8 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const useMuiTheme = (): Partial<DefaultTheme> =>
-  useMemo(
+export const useMuiTheme = (): Partial<DefaultTheme> => {
+  const theme = useMemo(
     () =>
       createTheme({
         palette: {
@@ -83,74 +83,89 @@ export const useMuiTheme = (): Partial<DefaultTheme> =>
       `,
           },
         },
-        typography: {
-          fontFamily: 'Press Start 2P, Roboto',
-          h1: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '116px',
-            lineHeight: '116px',
-            color: '#0049B5',
-          },
-          h2: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '80px',
-            lineHeight: '80px',
-            color: 'white',
-          },
-          h3: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '60px',
-            lineHeight: '60px',
-            color: '#0049B5',
-          },
-          h4: {
-            fontWeight: 700,
-            fontSize: '48px',
-            lineHeight: '56px',
-          },
-          h5: {
-            fontWeight: 700,
-            fontSize: '24px',
-            lineHeight: '28px',
-            color: 'black',
-          },
-          h6: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '44px',
-            lineHeight: '54px',
-            color: '#5A3A71',
-          },
-          body1: {
-            fontSize: '18px',
-            lineHeight: '22px',
-            color: 'white',
-          },
-          body2: {
-            fontWeight: 500,
-            fontSize: '20px',
-            color: 'white',
-          },
-          subtitle1: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '20px',
-            color: 'white',
-          },
-          subtitle2: {
-            fontSize: '16px',
-            lineHeight: '20px',
-            color: 'black',
-          },
-          caption: {
-            fontFamily: `'Press Start 2P'`,
-            fontSize: '24px',
-            lineHeight: '24px',
-            color: 'white',
-          },
-
-          button: {
-            textTransform: 'unset',
-          },
-        },
       }),
     [],
   );
+  theme.typography = {
+    ...theme.typography,
+    fontFamily: 'Press Start 2P, Roboto',
+    h1: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '116px',
+      lineHeight: '116px',
+      color: theme.palette.primary.main,
+    },
+    h2: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '80px',
+      lineHeight: '80px',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '50px',
+        lineHeight: '50px',
+      },
+      color: 'white',
+    },
+    h3: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '60px',
+      lineHeight: '60px',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '40px',
+        lineHeight: '40px',
+      },
+      color: theme.palette.primary.main,
+    },
+    h4: {
+      fontWeight: 700,
+      fontSize: '48px',
+      lineHeight: '56px',
+    },
+    h5: {
+      fontWeight: 700,
+      fontSize: '24px',
+      lineHeight: '28px',
+      color: 'black',
+    },
+    h6: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '44px',
+      lineHeight: '54px',
+      color: theme.palette.secondaryGradientStart.main,
+    },
+    body1: {
+      fontSize: '18px',
+      lineHeight: '22px',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '16px',
+        lineHeight: '18px',
+      },
+      color: 'white',
+    },
+    body2: {
+      fontWeight: 500,
+      fontSize: '20px',
+      color: 'white',
+    },
+    subtitle1: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '20px',
+      color: 'white',
+    },
+    subtitle2: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      color: 'black',
+    },
+    caption: {
+      fontFamily: `'Press Start 2P'`,
+      fontSize: '24px',
+      lineHeight: '24px',
+      color: 'white',
+    },
+
+    button: {
+      textTransform: 'unset',
+    },
+  };
+  return theme;
+};
