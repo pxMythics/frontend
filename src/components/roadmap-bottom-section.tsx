@@ -14,8 +14,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import phase1Gif from 'assets/img/phase-one.gif';
 import phase2Gif from 'assets/img/phase-two.gif';
 import phase3Gif from 'assets/img/phase-three.gif';
-// TODO Get proper file
-import phase4Gif from 'assets/img/phase__illustration-rectangle--4.png';
+import phase4Gif from 'assets/img/final-phase.gif';
 
 export const RoadmapBottomSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -144,6 +143,7 @@ export const RoadmapBottomSection: React.FunctionComponent = () => {
         </TimelineItem>
         <Phase4Container>
           <Phase4GifContainer>
+            <GifContainer />
             <img src={phase4Gif} alt={t('roadmap.bottom.phase4.altGif')} />
           </Phase4GifContainer>
         </Phase4Container>

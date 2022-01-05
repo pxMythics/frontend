@@ -48,6 +48,8 @@ export const en = {
     },
     hero: {
       thorAlt: 'Thor',
+      amaterasuAlt: 'Amaterasu',
+      quetzalcoatlAlt: 'Quetzalcoatl',
       title: 'ENTER THE',
       subtitle: 'UNIVERSE',
     },
