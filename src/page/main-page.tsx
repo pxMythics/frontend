@@ -14,15 +14,15 @@ export const MainPage: React.FunctionComponent = () => {
   return (
     <PageLayout>
       <HeroSection />
-      {isMobile ? <AboutSectionMobile /> : <AboutSection />}
       {!isMobile && (
         <>
+          <AboutSection />
           <RoadmapTopSection />
           <RoadmapBottomSection />
           <TeamSection />
+          <Footer />
         </>
       )}
-      <Footer />
     </PageLayout>
   );
 };

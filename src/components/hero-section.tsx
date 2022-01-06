@@ -98,6 +98,9 @@ const AbsolutePosLogo = styled(Box)`
   justify-content: center;
   position: absolute;
   top: 24px;
+  ${(props): string => props.theme.mediaQueries.desktop} {
+    top: 36px;
+  }
   > svg {
     width: 80%;
     height: 100%;
@@ -106,7 +109,7 @@ const AbsolutePosLogo = styled(Box)`
 
 const StyledTypography = styled(Typography)`
   ${(props): string => props.theme.mediaQueries.desktop} {
-    padding-bottom: 88px;
+    padding-bottom: 112px;
   }
   padding-bottom: 64px;
   color: ${(props): FlattenSimpleInterpolation | null => css`

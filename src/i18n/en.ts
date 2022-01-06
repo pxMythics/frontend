@@ -88,16 +88,16 @@ export const en = {
           body1: {
             text1: 'Each type of Genesis will produce a certain amount of $POWER per day:',
             subtext1: {
-              first: '50 1/1 Mythic Gods that generate',
-              second: '20 $POWER/day',
+              first: '51 1/1 Mythic Gods that generate',
+              second: '16 $POWER/day',
             },
             subtext2: {
-              first: '#X Demigods that generate',
-              second: '7 $POWER/day',
+              first: '400 Demigods that generate',
+              second: '8 $POWER/day',
             },
             subtext3: {
-              first: '#X Elementals that generate',
-              second: '$5 $POWER/day',
+              first: '550 Elementals that generate',
+              second: '6 $POWER/day',
             },
             text2:
               'Additionally, sometime before the release of the 6,111 mythics creature generative collection, there will be two snapshots –– all holders of the genesis collection during the times of these snapshots will be blessed by the Gods in the following ways:',
@@ -196,7 +196,7 @@ export const en = {
       },
       renaissance: {
         name: '0xRen',
-        title: 'Creative Consultant & Project Lead',
+        title: 'Co-Creator',
       },
     },
     footer: {

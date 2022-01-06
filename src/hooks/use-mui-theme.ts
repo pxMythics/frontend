@@ -100,8 +100,8 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
       fontSize: '80px',
       lineHeight: '80px',
       [theme.breakpoints.down('md')]: {
-        fontSize: '50px',
-        lineHeight: '50px',
+        fontSize: '40px',
+        lineHeight: '40px',
       },
       color: 'white',
     },
@@ -110,8 +110,8 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
       fontSize: '60px',
       lineHeight: '60px',
       [theme.breakpoints.down('md')]: {
-        fontSize: '40px',
-        lineHeight: '40px',
+        fontSize: '30px',
+        lineHeight: '30px',
       },
       color: theme.palette.primary.main,
     },

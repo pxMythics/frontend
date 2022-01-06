@@ -239,8 +239,8 @@ const H5Typography = styled(({ left, ...renderProps }) => (
 const PhaseGifContainer = styled(({ left, ...renderProps }) => <Column {...renderProps} />)<{
   left: boolean;
 }>`
-  width: 582px;
-  height: 363px;
+  width: 420px;
+  height: 262px;
   margin-top: 32px;
   margin-bottom: 32px;
   ${(props): FlattenSimpleInterpolation | null => {

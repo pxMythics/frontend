@@ -107,7 +107,7 @@ const PaddedColumn = styled(Column)`
 
 const AbsolutePosLogo = styled(Column)`
   position: absolute;
-  top: 36px;
+  top: 40px;
   width: 150%;
   > svg {
     width: 80%;

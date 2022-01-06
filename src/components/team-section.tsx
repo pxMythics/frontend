@@ -9,7 +9,7 @@ import ren from 'assets/img/0xRen.jpeg';
 import snotty from 'assets/img/snotty.png';
 import gabey from 'assets/img/gabey.png';
 import johnny from 'assets/img/johnny.jpeg';
-import matt from 'assets/img/kas.png';
+import matt from 'assets/img/anubis.jpeg';
 import kenzit from 'assets/img/kenzit.png';
 import nicolle from 'assets/img/nicolle.png';
 import bill from 'assets/img/bill.png';

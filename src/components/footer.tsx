@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
+import { openDiscord, openTwitter } from 'constant';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -20,8 +21,8 @@ export const Footer: React.FunctionComponent = () => {
         </AlignedBox>
         <LinkContainer>
           <OpenSeaLogo />
-          <DiscordLogo />
-          <TwitterLogo />
+          <DiscordLogo onClick={openDiscord} />
+          <TwitterLogo onClick={openTwitter} />
         </LinkContainer>
       </Container>
     </footer>

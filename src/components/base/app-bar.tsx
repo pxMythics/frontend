@@ -6,6 +6,7 @@ import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
 import { MintButton } from 'components/mint/mint-button';
+import { discordLink, openDiscord, openTwitter, twitterLink } from 'constant';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,8 +45,8 @@ const DesktopMenu: React.FunctionComponent = (props) => {
       </MenuItemContainer>
       <LinkContainer>
         <OpenSeaLogo />
-        <DiscordLogo />
-        <TwitterLogo />
+        <DiscordLogo onClick={openDiscord} />
+        <TwitterLogo onClick={openTwitter} />
       </LinkContainer>
       <MintButton />
     </DesktopMenuContainer>

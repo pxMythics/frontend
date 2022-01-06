@@ -3,6 +3,7 @@ import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
 import { MintButton } from 'components/mint/mint-button';
+import { openDiscord, openTwitter } from 'constant';
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { useTranslation } from 'react-i18next';
@@ -32,10 +33,10 @@ export const MobileSlidingMenu: React.FunctionComponent<Props> = (ß) => {
         <OpenSeaLogo />
       </LogoContainer>
       <LogoContainer>
-        <DiscordLogo />
+        <DiscordLogo onClick={openDiscord} />
       </LogoContainer>
       <LogoContainer>
-        <TwitterLogo />
+        <TwitterLogo onClick={openTwitter} />
       </LogoContainer>
       <MintButton />
     </StyledMenu>
