@@ -7,6 +7,7 @@ import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ContainerWithShadow } from 'components/base/container-with-shadow';
 import { MintButton } from 'components/mint/mint-button';
+import { useOnMobile } from 'hooks/use-on-mobile';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,13 +19,22 @@ interface ImageSlideProps {
   src: string;
   alt: string;
 }
-const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt }) => (
-  <ContainerWithShadow>
-    <ImageContainer>
-      <img src={src} alt={alt} />
-    </ImageContainer>
-  </ContainerWithShadow>
-);
+const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt }) => {
+  const isMobile = useOnMobile();
+  return isMobile ? (
+    <ContainerWithShadow shadowWidth={200}>
+      <ImageContainer>
+        <img src={src} alt={alt} />
+      </ImageContainer>
+    </ContainerWithShadow>
+  ) : (
+    <ContainerWithShadow>
+      <ImageContainer>
+        <img src={src} alt={alt} />
+      </ImageContainer>
+    </ContainerWithShadow>
+  );
+};
 
 export const HeroSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -99,7 +109,7 @@ const AbsolutePosLogo = styled(Box)`
   position: absolute;
   top: 24px;
   ${(props): string => props.theme.mediaQueries.desktop} {
-    top: 36px;
+    top: 40px;
   }
   > svg {
     width: 80%;
