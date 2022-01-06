@@ -109,7 +109,7 @@ const AbsolutePosLogo = styled(Box)`
   position: absolute;
   top: 24px;
   ${(props): string => props.theme.mediaQueries.desktop} {
-    top: 40px;
+    top: 48px;
   }
   > svg {
     width: 80%;
