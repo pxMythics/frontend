@@ -1,6 +1,6 @@
 export const mintPrice = '0.077';
 // TODO Optimize free mint gas cost
-export const whiteListMintGasPrice = 185000;
+export const whiteListMintGasPrice = 250000;
 export const freeMintGasPrice = 130000;
 export const twitterLink = 'https://twitter.com/pxMythicsNFT';
 export const discordLink = 'https://discord.com/invite/pxmythics';
