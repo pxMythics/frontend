@@ -68,7 +68,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
     <>
       <StyledButton
         onClick={onMintClick}
-        disabled={true}
+        disabled={buttonDisabled()}
         variant="contained"
         isLong={size === 'long'}
       >
