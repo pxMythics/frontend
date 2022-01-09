@@ -27,7 +27,8 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
 
   const limitReached = useCallback(() => {
     if (mintType === MintType.WHITELIST && tokenBalance === 1) {
-      return true;
+      // FIXME Allowing WL to mint because `tokenBalance` value can be > 1.
+      return false;
     } else if (mintType === MintType.FREE && tokenBalance === mintCount) {
       return true;
     }
