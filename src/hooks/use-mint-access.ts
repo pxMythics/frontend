@@ -28,14 +28,11 @@ export const useMintAccess = (): MintAccess => {
     httpClient
       .post<MintResponse>('mint', { address: account })
       .then((res) => {
-        if (
-          res.data &&
-          res.data?.mint &&
-          (res.data?.mint_count || (res.data?.nonce && res.data?.proof))
-        ) {
+        if (res.data && res.data?.mint) {
+          logger.info(`got mint access: ${JSON.stringify(res.data)}`);
           mintAccess.current = res.data;
         } else {
-          logger.error(`error fetching mint access: ${JSON.stringify(res.data)}`);
+          logger.error(`error parsing mint access: ${JSON.stringify(res.data)}`);
           fetchError.current = new Error(JSON.stringify(res.data));
         }
         setFetching(false);
