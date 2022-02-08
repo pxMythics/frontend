@@ -17,7 +17,7 @@ export class PinoWrapper extends LoggerWrapper {
   }
 
   private inferDefaultLogLevel(): string {
-    if (Config.isProduction) {
+    if (!Config.isDebug) {
       return 'info';
     }
 

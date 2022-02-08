@@ -1,5 +1,4 @@
 import { AboutSection } from 'components/about-section';
-import { AboutSectionMobile } from 'components/about-section-mobile';
 import { Footer } from 'components/footer';
 import { HeroSection } from 'components/hero-section';
 import { PageLayout } from 'components/layout/page-layout';

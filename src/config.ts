@@ -1,4 +1,13 @@
-import { Config as DAppConfig, Hardhat, Mainnet, Rinkeby } from '@usedapp/core';
+import {
+  Chain,
+  Config as DAppConfig,
+  Goerli,
+  Hardhat,
+  Kovan,
+  Mainnet,
+  Rinkeby,
+  Ropsten,
+} from '@usedapp/core';
 
 enum EnvironmentType {
   DEBUG = 'debug',
@@ -7,10 +16,10 @@ enum EnvironmentType {
 
 interface FrontendConfig {
   isDebug: boolean;
-  isProduction: boolean;
   contractAddress: string;
   apiUrl: string;
   DAppConfig: DAppConfig;
+  supportedNetworks: Chain[];
 }
 
 const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig => {
@@ -24,12 +33,12 @@ const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig =
       : {
           readOnlyChainId: Rinkeby.chainId,
           readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
-          networks: [Rinkeby],
+          networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
         }
     : {
         readOnlyChainId: Mainnet.chainId,
         readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
-        networks: [Mainnet],
+        networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
       };
 };
 const computeConfig = (): FrontendConfig => {
@@ -49,10 +58,10 @@ const computeConfig = (): FrontendConfig => {
 
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
-    isProduction: buildType === EnvironmentType.PROD,
     contractAddress: contractAddress || '0x976f87a62e8e2a9408E55D009d1022b5Ba8516f7',
     apiUrl,
     DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
+    supportedNetworks: isStaging ? [Rinkeby] : [Mainnet],
   };
 };
 

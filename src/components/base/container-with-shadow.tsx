@@ -22,7 +22,9 @@ export const ContainerWithShadow: React.FunctionComponent<Props> = ({
   );
 };
 
-const StyledImg = styled(({ shadowWidth, ...renderProps }) => <img {...renderProps} />)<{
+const StyledImg = styled(({ shadowWidth, shadowDistance, ...renderProps }) => (
+  <img {...renderProps} />
+))<{
   shadowWidth?: number;
   shadowDistance: number;
 }>`
