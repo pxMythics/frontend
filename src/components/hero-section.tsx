@@ -6,6 +6,7 @@ import quetzalcoatl from 'assets/img/quetzalcoatl.gif';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ContainerWithShadow } from 'components/base/container-with-shadow';
+import { ImageSlide } from 'components/image-slide';
 import { MintButton } from 'components/mint/mint-button';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import { toPairs } from 'ramda';
@@ -14,27 +15,6 @@ import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import Carousel from 'react-spring-3d-carousel-2';
-
-interface ImageSlideProps {
-  src: string;
-  alt: string;
-}
-const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt }) => {
-  const isMobile = useOnMobile();
-  return isMobile ? (
-    <ContainerWithShadow shadowWidth={200}>
-      <ImageContainer>
-        <img src={src} alt={alt} />
-      </ImageContainer>
-    </ContainerWithShadow>
-  ) : (
-    <ContainerWithShadow>
-      <ImageContainer>
-        <img src={src} alt={alt} />
-      </ImageContainer>
-    </ContainerWithShadow>
-  );
-};
 
 export const HeroSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -81,21 +61,6 @@ const CarouselContainer = styled(Box)`
   ${(props): string => props.theme.mediaQueries.desktop} {
     height: 360px;
   }
-`;
-
-const ImageContainer = styled(Box)`
-  height: 200px;
-  width: 200px;
-  ${(props): string => props.theme.mediaQueries.desktop} {
-    height: 290px;
-    width: 290px;
-  }
-  border: 3px solid
-    ${(props): FlattenSimpleInterpolation | null => css`
-      ${props.theme.palette.primaryGradientFinish.main}
-    `};
-  border-radius: 25px;
-  overflow: hidden;
 `;
 
 const CenteredColumn = styled(Column)`

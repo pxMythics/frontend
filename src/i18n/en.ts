@@ -202,5 +202,12 @@ export const en = {
     footer: {
       copyright: '© 2021 pxMythics all rights reserved.',
     },
+    orbs: {
+      claim: {
+        button: {
+          label: 'Claim your mysterious orb(s)',
+        },
+      },
+    },
   },
 };

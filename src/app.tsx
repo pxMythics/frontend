@@ -5,6 +5,7 @@ import { Config } from 'config';
 import { useBackendClient } from 'hooks/use-backend-client';
 import { useMuiTheme } from 'hooks/use-mui-theme';
 import { MainPage } from 'page/main-page';
+import { OrbsPage } from 'page/orbs-page';
 import { HttpClientProvider } from 'provider/http-client-provider';
 import { LoggerProvider, PinoWrapper } from 'provider/logger-provider';
 import { StyledComponentsThemeProvider } from 'provider/styled-components-theme-provider';
@@ -31,6 +32,7 @@ export const App: React.FunctionComponent = () => {
                   <CssBaseline />
                   <ChainChecker />
                   <Switch>
+                    <Route path={Routes.orbs} exact component={OrbsPage} />
                     <Route path={Routes.main} component={MainPage} />
                   </Switch>
                 </DAppProvider>
