@@ -188,7 +188,7 @@ export const OrbsPage: React.FunctionComponent = () => {
       }
     } else if (claimState === ClaimState.FETCHING_PROOF && isNil(mintResponse)) {
       fetchMintAccess();
-    } else if (claimState === ClaimState.CLAIMING) {
+    } else if (claimState === ClaimState.CLAIMING && isNil(mintState?.status)) {
       const mintCount = mintResponse!.nonce!;
       sendMint(
         mintCount,
