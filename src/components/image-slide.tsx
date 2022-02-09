@@ -29,6 +29,10 @@ export const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt,
 const ImageContainer = styled(Box)`
   height: 200px;
   width: 200px;
+  ${(props): string => props.theme.mediaQueries.tablet} {
+    height: 280px;
+    width: 280px;
+  }
   ${(props): string => props.theme.mediaQueries.desktop} {
     height: 380px;
     width: 380px;

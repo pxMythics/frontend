@@ -177,7 +177,6 @@ export const OrbsPage: React.FunctionComponent = () => {
   }, [account, connected, isOnValidChain, claimState]);
 
   useEffect(() => {
-    console.log(`state ${claimState}`);
     if (claimState === ClaimState.CHECKING) {
       if (!isNil(claimedCount)) {
         logger.info(`Claimed ${claimedCount[0]} orbs so far`);
@@ -268,8 +267,12 @@ const Container = styled(Column)`
 `;
 
 const CarouselContainer = styled(Box)`
-  width: 100%;
+  width: 375px;
   height: 242px;
+  ${(props): string => props.theme.mediaQueries.tablet} {
+    width: 440px;
+    height: 360px;
+  }
   ${(props): string => props.theme.mediaQueries.desktop} {
     width: 800px;
     height: 360px;
