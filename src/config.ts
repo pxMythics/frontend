@@ -17,6 +17,7 @@ enum EnvironmentType {
 interface FrontendConfig {
   isDebug: boolean;
   contractAddress: string;
+  orbContractAddress: string;
   apiUrl: string;
   DAppConfig: DAppConfig;
   supportedNetworks: Chain[];
@@ -59,6 +60,7 @@ const computeConfig = (): FrontendConfig => {
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     contractAddress: contractAddress || '0x976f87a62e8e2a9408E55D009d1022b5Ba8516f7',
+    orbContractAddress: getOrbContractAddress(),
     apiUrl,
     DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
     supportedNetworks: isStaging ? [Rinkeby] : [Mainnet],
@@ -82,6 +84,7 @@ const getEnvironmentType = (): EnvironmentType => {
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
 const getContractAddress = (): string => process.env.REACT_APP_CONTRACT_ADDRESS!;
+const getOrbContractAddress = (): string => process.env.REACT_APP_ORB_CONTRACT_ADDRESS!;
 const getBackendUrl = (): string => process.env.REACT_APP_BACKEND_URL!;
 const getAlchemyUrl = (): string => process.env.REACT_APP_ALCHEMY_URL!;
 const getIsLocalNode = (): boolean => process.env.REACT_APP_LOCAL_NODE! === 'true';

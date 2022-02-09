@@ -205,8 +205,14 @@ export const en = {
     orbs: {
       claim: {
         button: {
-          label: 'Claim your mysterious orb(s)',
+          claim: 'Claim your mysterious orb(s)',
+          alreadyClaimed: 'You already claimed your orbs',
+          checking: 'Checking claim status...',
+          claiming: 'Claiming mysterious orb(s)...',
+          cannotClaim: "You don't have any orbs to claim",
+          success: 'You successfully claimed your orb(s)!',
         },
+        error: 'Error claiming your orbs. Please try again.',
       },
     },
   },

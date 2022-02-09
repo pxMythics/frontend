@@ -1,20 +1,17 @@
 import { Typography } from '@mui/material';
-import background from 'assets/img/hero-background.png';
-import thor from 'assets/img/thor.gif';
 import amaterasu from 'assets/img/amaterasu.gif';
+import background from 'assets/img/hero-background.png';
+import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import quetzalcoatl from 'assets/img/quetzalcoatl.gif';
+import thor from 'assets/img/thor.gif';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
-import { ContainerWithShadow } from 'components/base/container-with-shadow';
 import { ImageSlide } from 'components/image-slide';
-import { MintButton } from 'components/mint/mint-button';
-import { useOnMobile } from 'hooks/use-on-mobile';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import Carousel from 'react-spring-3d-carousel-2';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const HeroSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -37,9 +34,9 @@ export const HeroSection: React.FunctionComponent = () => {
         </AbsolutePosLogo>
         <Typography variant={'h3'}>{t('hero.subtitle')}</Typography>
       </CenteredColumn>
-      <ContainerWithShadow>
-        <MintButton size={'long'} />
-      </ContainerWithShadow>
+      {/*<ContainerWithShadow>*/}
+      {/*  <MintButton size={'long'} />*/}
+      {/*</ContainerWithShadow>*/}
     </Container>
   );
 };
