@@ -48,10 +48,11 @@ const computeConfig = (): FrontendConfig => {
   console.info('Build type [%s].', buildType);
 
   // Fetch config from injected config when in prod (see index.html)
-  const { alchemyUrl, contractAddress, isStaging, apiUrl } = window.CONFIG || {
+  const { alchemyUrl, contractAddress, isStaging, apiUrl, orbContractAddress } = window.CONFIG || {
     alchemyUrl: getAlchemyUrl(),
     contractAddress: getContractAddress(),
     apiUrl: getBackendUrl(),
+    orbContractAddress: getOrbContractAddress(),
     // More or less a hack, we want to be on rinkeby on staging but we don't pass the environment type
     // we inject it directly in the config
     isStaging: buildType === EnvironmentType.DEBUG,
@@ -60,8 +61,8 @@ const computeConfig = (): FrontendConfig => {
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     contractAddress: contractAddress || '0x976f87a62e8e2a9408E55D009d1022b5Ba8516f7',
-    orbContractAddress: getOrbContractAddress(),
     apiUrl,
+    orbContractAddress,
     DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
     supportedNetworks: isStaging ? [Rinkeby] : [Mainnet],
   };
