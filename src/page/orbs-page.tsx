@@ -206,7 +206,18 @@ export const OrbsPage: React.FunctionComponent = () => {
         },
       );
     }
-  }, [claimedCount, claimState, mintResponse]);
+  }, [
+    account,
+    claimedCount,
+    claimState,
+    mintResponse,
+    mintState?.status,
+    logger,
+    claimedError,
+    contract.address,
+    fetchMintAccess,
+    sendMint,
+  ]);
 
   // setting tx error if we have a minting error
   useEffect((): void => {
