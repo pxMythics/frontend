@@ -51,7 +51,7 @@ export const useMintAccess = (): MintAccess => {
       setFetching(true);
       fetchMintAccess();
     }
-  }, [account]);
+  }, [account, fetchMintAccess, fetching]);
 
   return {
     fetching,

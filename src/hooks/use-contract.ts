@@ -13,6 +13,5 @@ export const useContract = () => {
 
 export const useOrbContract = (): Contract => {
   const abi = useOrbsContractAbi();
-  const contract = useMemo(() => new Contract(Config.orbContractAddress, abi), []);
-  return contract;
+  return useMemo(() => new Contract(Config.orbContractAddress, abi), [abi]);
 };

@@ -14,7 +14,6 @@ import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ContainerWithShadow } from 'components/base/container-with-shadow';
 import { ImageSlide, ImageSlideProps } from 'components/image-slide';
-import { mintPrice, whiteListMintGasPrice } from 'constant';
 import { ethers } from 'ethers';
 import { useOrbContract } from 'hooks/use-contract';
 import { TFunction } from 'i18next';
@@ -166,15 +165,18 @@ export const OrbsPage: React.FunctionComponent = () => {
   useEffect((): void => {
     if (!isNil(account)) {
       if (!connected) {
+        logger.info('Deactivating account...');
         deactivate();
       } else if (isOnValidChain && claimState === ClaimState.NONE) {
+        logger.info('Will check for orbs');
         setClaimState(ClaimState.CHECKING);
       }
     } else if (!connected && !isOnValidChain) {
+      logger.info('Invalid state');
       deactivate();
       setConnected(false);
     }
-  }, [account, connected, isOnValidChain, claimState]);
+  }, [account, connected, isOnValidChain, claimState, logger, deactivate]);
 
   useEffect(() => {
     if (claimState === ClaimState.CHECKING) {
@@ -187,6 +189,7 @@ export const OrbsPage: React.FunctionComponent = () => {
         }
       }
     } else if (claimState === ClaimState.FETCHING_PROOF && isNil(mintResponse)) {
+      logger.info('Fetching from backend...');
       fetchMintAccess();
     } else if (claimState === ClaimState.CLAIMING && mintState?.status === 'None') {
       const mintCount = mintResponse!.nonce!;
@@ -210,7 +213,7 @@ export const OrbsPage: React.FunctionComponent = () => {
     if (mintState?.status === 'Success') {
       setClaimState(ClaimState.SUCCESS);
     }
-  }, [mintState, mintState?.status, setClaimState, setTxError]);
+  }, [logger, mintState, mintState?.status, setClaimState, setTxError]);
 
   // minting when we received the proof
   useEffect(() => {
@@ -222,10 +225,10 @@ export const OrbsPage: React.FunctionComponent = () => {
   // on checking claimed error
   useEffect((): void => {
     if (!isNil(claimedError)) {
-      logger.info(`Error checking claimed state`);
+      logger.info(`Error checking claimed state ${claimedError}`);
       setClaimState(ClaimState.MINT_ERROR);
     }
-  }, [claimedError, setClaimState]);
+  }, [claimedError, logger, setClaimState]);
 
   return (
     <>
