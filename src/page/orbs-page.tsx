@@ -187,6 +187,10 @@ export const OrbsPage: React.FunctionComponent = () => {
         } else {
           setClaimState(ClaimState.FETCHING_PROOF);
         }
+      } else {
+        logger.info(
+          `Checking orbs with no count but error: ${claimedError} account: ${account} contract: ${contract.address}`,
+        );
       }
     } else if (claimState === ClaimState.FETCHING_PROOF && isNil(mintResponse)) {
       logger.info('Fetching from backend...');
