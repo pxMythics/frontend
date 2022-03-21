@@ -206,7 +206,7 @@ export const OrbsPage: React.FunctionComponent = () => {
 
   // setting tx error if we have a minting error
   useEffect((): void => {
-    logger(`Status updated with ${mintState?.status}`);
+    logger.info(`Status updated with ${mintState?.status}`);
     if (mintState?.status === 'Fail' || mintState?.status === 'Exception') {
       logger.error(`Error minting: ${mintState?.errorMessage}`);
       setTxError(true);
