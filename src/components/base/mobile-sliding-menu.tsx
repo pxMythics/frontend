@@ -1,22 +1,21 @@
 import { ReactComponent as DiscordLogo } from 'assets/img/discord-icon.svg';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
-import { Box } from 'components/base/box';
-import { MintButton } from 'components/mint/mint-button';
-import { openDiscord, openTwitter } from 'constant';
-import React from 'react';
+import { Column } from 'components/base/column';
+import { ExternalLink } from 'components/base/external-link';
+import { InternalLink } from 'components/base/internal-link';
+import { discordLink, openSeaLink, Section, twitterLink } from 'constant';
+import React, { useCallback } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isMobileMenuOpen } from 'service/state';
 import styled from 'styled-components';
 
-interface Props {}
-
-export const MobileSlidingMenu: React.FunctionComponent<Props> = (ß) => {
+export const MobileSlidingMenu: React.FunctionComponent = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <StyledMenu
@@ -25,20 +24,32 @@ export const MobileSlidingMenu: React.FunctionComponent<Props> = (ß) => {
       outerContainerId={'outer-container'}
       onStateChange={(state) => setIsMenuOpen(state.isOpen)}
     >
-      <StyledLink to={'/#hero'}>{t('menu.home')}</StyledLink>
-      <StyledLink to={'/#about'}>{t('menu.about')}</StyledLink>
-      <StyledLink to={'/#roadmap'}>{t('menu.roadmap')}</StyledLink>
-      <StyledLink to={'/#team'}>{t('menu.team')}</StyledLink>
+      <LinkContainer>
+        <StyledLink to={Section.HOME} onClick={closeMenu}>
+          {t('menu.home')}
+        </StyledLink>
+        <StyledLink to={Section.ABOUT} onClick={closeMenu}>
+          {t('menu.about')}
+        </StyledLink>
+        <StyledLink to={Section.ROADMAP} onClick={closeMenu}>
+          {t('menu.roadmap')}
+        </StyledLink>
+        <StyledLink to={Section.TEAM} onClick={closeMenu}>
+          {t('menu.team')}
+        </StyledLink>
+      </LinkContainer>
       <LogoContainer>
-        <OpenSeaLogo />
+        <ExternalLink href={openSeaLink}>
+          <OpenSeaLogo />
+        </ExternalLink>
+        <ExternalLink href={discordLink}>
+          <DiscordLogo />
+        </ExternalLink>
+        <ExternalLink href={twitterLink}>
+          <TwitterLogo />
+        </ExternalLink>
       </LogoContainer>
-      <LogoContainer>
-        <DiscordLogo onClick={openDiscord} />
-      </LogoContainer>
-      <LogoContainer>
-        <TwitterLogo onClick={openTwitter} />
-      </LogoContainer>
-      <MintButton />
+      {/*<MintButton />*/}
     </StyledMenu>
   );
 };
@@ -48,7 +59,7 @@ const StyledMenu = styled(Menu)`
   .bm-menu {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(4px);
-    padding: 24px;
+    padding: 56px 24px;
   }
   .bm-item-list {
     display: flex;
@@ -59,16 +70,27 @@ const StyledMenu = styled(Menu)`
   }
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #5a3a71;
-  margin-bottom: 20px;
+const StyledLink = styled(InternalLink)`
+  && {
+    color: #5a3a71;
+    margin-bottom: 20px;
+  }
 `;
 
-const LogoContainer = styled(Box)`
-  height: 56px;
-  margin-bottom: 20px;
-  > svg {
+const LogoContainer = styled(Column)`
+  && {
+    display: flex !important;
+  }
+  margin: 32px 0;
+  gap: 32px;
+  svg {
     height: 56px;
   }
+`;
+
+const LinkContainer = styled(Column)`
+  && {
+    display: flex !important;
+  }
+  gap: 20px;
 `;

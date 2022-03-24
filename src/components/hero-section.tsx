@@ -7,6 +7,7 @@ import thor from 'assets/img/thor.gif';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ImageSlide } from 'components/image-slide';
+import { Section } from 'constant';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +24,7 @@ export const HeroSection: React.FunctionComponent = () => {
   );
 
   return (
-    <Container>
+    <Container id={Section.HOME}>
       <CarouselContainer>
         <Carousel showNavigation={false} slides={slides} autoPlay={true} interval={3} />
       </CarouselContainer>

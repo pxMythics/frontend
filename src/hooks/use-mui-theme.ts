@@ -1,7 +1,6 @@
 import { createTheme } from '@mui/material';
 import { useMemo } from 'react';
 import { DefaultTheme } from '@mui/system';
-import PressStart2P from 'assets/fonts/press-start-2p.ttf';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -9,6 +8,10 @@ declare module '@mui/material/styles' {
     primaryGradientFinish: Palette['primary'];
     secondaryGradientStart: Palette['primary'];
     secondaryGradientFinish: Palette['primary'];
+    claim: {
+      bg: string;
+      input: string;
+    };
   }
 
   interface PaletteOptions {
@@ -16,6 +19,10 @@ declare module '@mui/material/styles' {
     primaryGradientFinish: PaletteOptions['primary'];
     secondaryGradientStart: PaletteOptions['primary'];
     secondaryGradientFinish: PaletteOptions['primary'];
+    claim: {
+      bg: string;
+      input: string;
+    };
   }
 }
 
@@ -48,6 +55,19 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
           action: {
             disabled: '#FF7373',
           },
+          claim: {
+            bg: '#2F263B',
+            input: '#FFBF0A',
+          },
+        },
+        breakpoints: {
+          values: {
+            xs: 320,
+            sm: 600,
+            md: 768,
+            lg: 1200,
+            xl: 1536,
+          },
         },
         components: {
           MuiTypography: {
@@ -61,17 +81,6 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
             defaultProps: {
               disableRipple: true,
             },
-          },
-          MuiCssBaseline: {
-            styleOverrides: `
-        @font-face {
-          font-family: 'Press Start 2P';
-          font-style: normal;
-          font-weight: 400;
-          src: local('Press Start 2P'), url(${PressStart2P}) format('truetype');
-          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        }
-      `,
           },
         },
       }),

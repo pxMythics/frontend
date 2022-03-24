@@ -1,4 +1,5 @@
 import { Typography } from '@mui/material';
+import { BaseButton } from 'components/base/base-button';
 import anubis from 'assets/img/anubis.jpeg';
 import chaac from 'assets/img/chaac.png';
 import kaishen from 'assets/img/kaishen.png';
@@ -6,11 +7,14 @@ import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import odin from 'assets/img/odin.png';
 import raijin from 'assets/img/raijin.png';
 import shiva from 'assets/img/shiva.png';
+import { BaseLink } from 'components/base/base-link';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
+import { Section } from 'constant';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Routes } from 'service/routing';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const AboutSection: React.FunctionComponent = () => {
@@ -26,7 +30,7 @@ export const AboutSection: React.FunctionComponent = () => {
     odin: odin,
   };
   return (
-    <Container>
+    <Container id={Section.ABOUT}>
       <ImageRow>
         <ImageColumn>
           {toPairs(imageFirstRow).map((value) => (
@@ -46,9 +50,7 @@ export const AboutSection: React.FunctionComponent = () => {
       <TextContainer>
         <PaddedColumn>
           <Typography variant={'h2'}>{t('about.title')}</Typography>
-          <AbsolutePosLogo>
-            <Logo />
-          </AbsolutePosLogo>
+          <AbsolutePosLogo width={480} height={140} />
         </PaddedColumn>
         <Typography variant={'body1'}>{t('about.text1')}</Typography>
         <br />
@@ -57,14 +59,16 @@ export const AboutSection: React.FunctionComponent = () => {
         <Typography variant={'body1'}>{t('about.text3')}</Typography>
         <br />
         <Typography variant={'body1'}>{t('about.text4')}</Typography>
+        <BaseLink to={Routes.claim}>
+          <ClaimButton>{t('about.claim.button')}</ClaimButton>
+        </BaseLink>
       </TextContainer>
     </Container>
   );
 };
 
 const Container = styled(Box)`
-  padding-top: 128px;
-  height: 850px;
+  padding: 95px 32px 135px;
   background: ${(props): FlattenSimpleInterpolation | null => css`
     radial-gradient(51.41% 51.41% at 31.9% 48.59%, ${props.theme.palette.primaryGradientFinish.main} 0%, #101924 99.83%);
     `};
@@ -95,22 +99,21 @@ const ImageColumn = styled(Column)`
 
 const TextContainer = styled(Column)`
   width: 33%;
-  margin-left: 32px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-bottom: 32px;
+  margin-left: 60px;
 `;
 
 const PaddedColumn = styled(Column)`
   margin-bottom: 128px;
 `;
 
-const AbsolutePosLogo = styled(Column)`
+const AbsolutePosLogo = styled(Logo)`
   position: absolute;
   top: 40px;
-  width: 150%;
-  > svg {
-    width: 80%;
-    height: 100%;
+`;
+
+const ClaimButton = styled(BaseButton)`
+  && {
+    margin-top: 36px;
+    color: white;
   }
 `;

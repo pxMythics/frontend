@@ -3,15 +3,12 @@ export const mintPrice = '0.077';
 export const whiteListMintGasPrice = 250000;
 export const freeMintGasPrice = 130000;
 export const twitterLink = 'https://twitter.com/pxMythicsNFT';
-export const discordLink = 'https://discord.com/invite/pxmythics';
-export const openSeaLink = '';
+export const discordLink = 'https://discord.gg/BE4j7StVJt';
+export const openSeaLink = 'https://opensea.io/collection/pxmythics-genesis';
 
-export const openTwitter = () => {
-  window.open(twitterLink, '_blank');
-};
-export const openDiscord = () => {
-  window.open(discordLink, '_blank');
-};
-export const openOpenSea = () => {
-  window.open(openSeaLink, '_blank');
-};
+export enum Section {
+  HOME = 'home',
+  ABOUT = 'about',
+  ROADMAP = 'roadmap',
+  TEAM = 'team',
+}
