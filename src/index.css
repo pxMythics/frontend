@@ -1,15 +1,40 @@
 @import "~css-reset-and-normalize/css/reset-and-normalize.min.css";
 
-html, body, #root {
-  width: 100%;
-  height: 100%;
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  /*TODO set the theme color*/
+  background: black;
+  min-height: 100vh;
+  max-width: 100vw;
+  scroll-behavior: smooth;
 }
 
 @font-face {
   font-family: 'Press Start 2P';
-  src: local('Press Start 2P'), url(./assets/fonts/press-start-2p.ttf) format('truetype');
+  src: url('./assets/fonts/PressStart2P-Regular.eot');
+  src: url('./assets/fonts/PressStart2P-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/PressStart2P-Regular.woff2') format('woff2'),
+  url('./assets/fonts/PressStart2P-Regular.woff') format('woff'),
+  url('./assets/fonts/PressStart2P-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
+
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 /*
 Sidebar wrapper styles

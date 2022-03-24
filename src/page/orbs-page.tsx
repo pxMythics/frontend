@@ -14,7 +14,6 @@ import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ContainerWithShadow } from 'components/base/container-with-shadow';
 import { ImageSlide, ImageSlideProps } from 'components/image-slide';
-import { mintPrice, whiteListMintGasPrice } from 'constant';
 import { ethers } from 'ethers';
 import { useOrbContract } from 'hooks/use-contract';
 import { TFunction } from 'i18next';

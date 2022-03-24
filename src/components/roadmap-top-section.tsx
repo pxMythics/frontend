@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import topBackground from 'assets/img/roadmap-background-top.png';
 import { Column } from 'components/base/column';
+import { Section } from 'constant';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -10,7 +11,7 @@ import elipse from 'assets/img/roadmap-top-elipse.png';
 export const RoadmapTopSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
   return (
-    <Column>
+    <Column id={Section.ROADMAP}>
       <TopContainer>
         <PaddedTitle variant={'h1'}>{t('roadmap.top.title')}</PaddedTitle>
         <PaddedSubtitle variant={'h4'}>{t('roadmap.top.subtitle')}</PaddedSubtitle>

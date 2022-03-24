@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
+import { Section } from 'constant';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
@@ -33,7 +34,7 @@ export const TeamSection: React.FunctionComponent = () => {
     renaissance: ren,
   };
   return (
-    <Container>
+    <Container id={Section.TEAM}>
       <PaddedTitle variant={'h2'}>{t('team.title')}</PaddedTitle>
       <ImageColumn>
         <ImageRow>
@@ -75,7 +76,9 @@ const Container = styled(Column)`
 `;
 
 const PaddedTitle = styled(Typography)`
-  margin-bottom: 96px;
+  && {
+    margin-bottom: 96px;
+  }
 `;
 
 const ImageContainer = styled(Column)`

@@ -5,7 +5,9 @@ import hamburgerMenu from 'assets/img/navbar_mobile_icon-menu.png';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
-import { openDiscord, openTwitter } from 'constant';
+import { ExternalLink } from 'components/base/external-link';
+import { InternalLink } from 'components/base/internal-link';
+import { discordLink, openSeaLink, Section, twitterLink } from 'constant';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,14 +19,16 @@ const MobileMenu: React.FunctionComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
 
   return (
-    <MobileMenuContainer>
-      <FixedHeightBox>
-        <Logo />
-      </FixedHeightBox>
-      <AbsolutePositionIconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <img src={hamburgerMenu} alt={'Menu'} />
-      </AbsolutePositionIconButton>
-    </MobileMenuContainer>
+    <>
+      <MobileMenuContainer>
+        <FixedHeightBox>
+          <Logo />
+        </FixedHeightBox>
+      </MobileMenuContainer>
+      {/*<AbsolutePositionIconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>*/}
+      {/*  <img src={hamburgerMenu} alt={'Menu'} />*/}
+      {/*</AbsolutePositionIconButton>*/}
+    </>
   );
 };
 
@@ -33,21 +37,37 @@ const DesktopMenu: React.FunctionComponent = (props) => {
 
   return (
     <DesktopMenuContainer {...props}>
-      <FixedHeightBox>
-        <Logo />
-      </FixedHeightBox>
-      <MenuItemContainer>
-        <StyledMenuItem>{t('menu.home')}</StyledMenuItem>
-        <StyledMenuItem>{t('menu.about')}</StyledMenuItem>
-        <StyledMenuItem>{t('menu.roadmap')}</StyledMenuItem>
-        <StyledMenuItem>{t('menu.team')}</StyledMenuItem>
-      </MenuItemContainer>
-      <LinkContainer>
-        <OpenSeaLogo />
-        <DiscordLogo onClick={openDiscord} />
-        <TwitterLogo onClick={openTwitter} />
-      </LinkContainer>
-      {/*<MintButton />*/}
+      <CenteredContainer>
+        <FixedHeightBox>
+          <Logo />
+        </FixedHeightBox>
+        <MenuItemContainer>
+          <StyledMenuItem>
+            <InternalLink to={Section.HOME}>{t('menu.home')}</InternalLink>
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <InternalLink to={Section.ABOUT}>{t('menu.about')}</InternalLink>
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <InternalLink to={Section.ROADMAP}>{t('menu.roadmap')}</InternalLink>
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <InternalLink to={Section.TEAM}>{t('menu.team')}</InternalLink>
+          </StyledMenuItem>
+        </MenuItemContainer>
+        <LinkContainer>
+          <ExternalLink href={openSeaLink}>
+            <OpenSeaLogo height={32} width={32} />
+          </ExternalLink>
+          <ExternalLink href={discordLink}>
+            <DiscordLogo height={32} width={32} />
+          </ExternalLink>
+          <ExternalLink href={twitterLink}>
+            <TwitterLogo height={32} width={32} />
+          </ExternalLink>
+        </LinkContainer>
+        {/*<MintButton />*/}
+      </CenteredContainer>
     </DesktopMenuContainer>
   );
 };
@@ -85,9 +105,17 @@ const StyledAppBar = styled(MuiAppBar)`
 `;
 
 const DesktopMenuContainer = styled(Box)`
+  width: 100%;
+  flex: 1 1 auto;
+  justify-content: center;
+`;
+
+const CenteredContainer = styled(Box)`
+  width: 100%;
   flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
+  max-width: 1200px;
 `;
 
 const FixedHeightBox = styled(Box)`
@@ -105,6 +133,7 @@ const StyledMenuItem = styled(MenuItem)`
   && {
     color: white;
     padding: 18px;
+    font-weight: 500;
   }
 `;
 
@@ -112,20 +141,22 @@ const LinkContainer = styled(Box)`
   height: 32px;
   padding-right: 16px;
   align-items: center;
-  justify-content: space-between;
-  > svg {
-    height: 32px;
+  gap: 20px;
+  svg {
     mix-blend-mode: overlay;
   }
 `;
 
 const MobileMenuContainer = styled(Box)`
-  flex: 1;
+  flex: 1 1 auto;
+  width: 100%;
   align-items: center;
   justify-content: center;
 `;
 
 const AbsolutePositionIconButton = styled(IconButton)`
-  position: absolute;
-  right: 0;
+  && {
+    position: absolute;
+    right: 0;
+  }
 `;

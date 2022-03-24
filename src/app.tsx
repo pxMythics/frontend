@@ -4,6 +4,7 @@ import { ChainChecker } from 'components/chain-checker';
 import { Config } from 'config';
 import { useBackendClient } from 'hooks/use-backend-client';
 import { useMuiTheme } from 'hooks/use-mui-theme';
+import { ClaimPage } from 'page/claim-page';
 import { MainPage } from 'page/main-page';
 import { OrbsPage } from 'page/orbs-page';
 import { HttpClientProvider } from 'provider/http-client-provider';
@@ -32,6 +33,7 @@ export const App: React.FunctionComponent = () => {
                   <CssBaseline />
                   <ChainChecker />
                   <Switch>
+                    <Route path={Routes.claim} component={ClaimPage} />
                     <Route path={Routes.orbs} exact component={OrbsPage} />
                     <Route path={Routes.main} component={MainPage} />
                   </Switch>

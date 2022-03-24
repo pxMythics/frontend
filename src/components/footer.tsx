@@ -3,7 +3,8 @@ import { ReactComponent as Logo } from 'assets/img/logo.svg';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
-import { openDiscord, openTwitter } from 'constant';
+import { ExternalLink } from 'components/base/external-link';
+import { discordLink, openSeaLink, twitterLink } from 'constant';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -20,9 +21,15 @@ export const Footer: React.FunctionComponent = () => {
           <Copyright>{t('footer.copyright')}</Copyright>
         </AlignedBox>
         <LinkContainer>
-          <OpenSeaLogo />
-          <DiscordLogo onClick={openDiscord} />
-          <TwitterLogo onClick={openTwitter} />
+          <ExternalLink href={openSeaLink}>
+            <OpenSeaLogo />
+          </ExternalLink>
+          <ExternalLink href={discordLink}>
+            <DiscordLogo />
+          </ExternalLink>
+          <ExternalLink href={twitterLink}>
+            <TwitterLogo />
+          </ExternalLink>
         </LinkContainer>
       </Container>
     </footer>

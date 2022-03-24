@@ -8,6 +8,7 @@ import raijin from 'assets/img/raijin.png';
 import shiva from 'assets/img/shiva.png';
 import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
+import { Section } from 'constant';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +27,7 @@ export const AboutSection: React.FunctionComponent = () => {
     odin: odin,
   };
   return (
-    <Container>
+    <Container id={Section.ABOUT}>
       <ImageRow>
         <ImageColumn>
           {toPairs(imageFirstRow).map((value) => (
