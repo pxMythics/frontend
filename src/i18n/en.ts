@@ -60,22 +60,24 @@ export const en = {
       text2:
         'A powerhouse blend of the ancient past, and the rapidly approaching future –- with some of the greatest myths and legends ever told being immortalized even further onto the greatest technologies the world has ever seen.',
       text3:
-        'Both the 1,000 supply Mythic Genesis collection and the following 6,111 Mythic creatures collection will generate $POWER - the native token within the pxMythics Universe.',
+        'Both the 1,000 supply Mythic Genesis collection and the following 6,111 Mythic creatures collection will generate $DVN - the native token within the pxMythics Universe.',
       text4:
-        '$POWER will initially be used to ascend worthy creatures into the ethereal world of the Gods, demigods, and elementals –– but that is not where its use case stops. $POWER will be the core of the ever expanding, ever evolving, pxMythics NFT ecosystem.',
+        '$DVN will initially be used to ascend worthy creatures into the ethereal world of the Gods, demigods, and elementals –– but that is not where its use case stops. $DVN will be the core of the ever expanding, ever evolving, pxMythics NFT ecosystem.',
       shiva: 'Shiva',
       chaac: 'Chaac',
       raijin: 'Raijin',
       kaishen: 'Kaishen',
       anubis: 'Anubis',
       odin: 'Odin',
+      claim: {
+        button: 'Claim your $DVN',
+      },
     },
     roadmap: {
       top: {
         title: 'ROADMAP',
         subtitle: '1,000 Mythic Genesis | 0.077 Mint price',
-        subtext1:
-          '$POWER will serve as the foundation for the pxMythics universe and NFT ecosystem',
+        subtext1: '$DVN will serve as the foundation for the pxMythics universe and NFT ecosystem',
         subtext2:
           'All present and future plans + utility will be accessed by using this native token.',
         elipseAlt: 'Roadmap',
@@ -86,18 +88,18 @@ export const en = {
           subtitle:
             'The pxMythics Universe starts with the Mythics genesis collection –– A 1,000 supply NFT set with 3 different types of Genesis Mythics.',
           body1: {
-            text1: 'Each type of Genesis will produce a certain amount of $POWER per day:',
+            text1: 'Each type of Genesis will produce a certain amount of $DVN per day:',
             subtext1: {
               first: '51 1/1 Mythic Gods that generate',
-              second: '16 $POWER/day',
+              second: '16 $DVN/day',
             },
             subtext2: {
               first: '400 Demigods that generate',
-              second: '8 $POWER/day',
+              second: '8 $DVN/day',
             },
             subtext3: {
               first: '550 Elementals that generate',
-              second: '6 $POWER/day',
+              second: '6 $DVN/day',
             },
             text2:
               'Additionally, sometime before the release of the 6,111 mythics creature generative collection, there will be two snapshots –– all holders of the genesis collection during the times of these snapshots will be blessed by the Gods in the following ways:',
@@ -111,7 +113,7 @@ export const en = {
         phase2: {
           title: 'PHASE TWO',
           subtitle:
-            'The first official use for $POWER will come with the release of the 6,111 generative mythic creatures collection, and will be spent on creature ascensions.',
+            'The first official use for $DVN will come with the release of the 6,111 generative mythic creatures collection, and will be spent on creature ascensions.',
           body1_1:
             'Each creature will be able to ascend into one of two archetypes (creative or destructive) and one of 7 elements (earth, water, fire, air, electricity, metal, and magma).',
           body1_2:
@@ -119,7 +121,7 @@ export const en = {
           body1_3:
             'All creature types will have affinity for the rare elements - electricity, metal, and magma.',
           body1_4:
-            'Any creature that ascends into its affinity archetype OR its affinity elements will generate more $POWER than a creature that doesn’t –– and a creature that ascends into BOTH its affinity archetype AND its affinity element will generate even more $POWER.',
+            'Any creature that ascends into its affinity archetype OR its affinity elements will generate more $DVN than a creature that doesn’t –– and a creature that ascends into BOTH its affinity archetype AND its affinity element will generate even more $DVN.',
           altRoadmap: 'PHASE TWO',
           altGif: 'Power usage',
         },

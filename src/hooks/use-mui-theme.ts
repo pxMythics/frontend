@@ -8,6 +8,10 @@ declare module '@mui/material/styles' {
     primaryGradientFinish: Palette['primary'];
     secondaryGradientStart: Palette['primary'];
     secondaryGradientFinish: Palette['primary'];
+    claim: {
+      bg: string;
+      input: string;
+    };
   }
 
   interface PaletteOptions {
@@ -15,6 +19,10 @@ declare module '@mui/material/styles' {
     primaryGradientFinish: PaletteOptions['primary'];
     secondaryGradientStart: PaletteOptions['primary'];
     secondaryGradientFinish: PaletteOptions['primary'];
+    claim: {
+      bg: string;
+      input: string;
+    };
   }
 }
 
@@ -46,6 +54,10 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
           },
           action: {
             disabled: '#FF7373',
+          },
+          claim: {
+            bg: '#2F263B',
+            input: '#FFBF0A',
           },
         },
         breakpoints: {
