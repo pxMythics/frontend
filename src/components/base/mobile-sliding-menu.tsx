@@ -15,8 +15,7 @@ import styled from 'styled-components';
 export const MobileSlidingMenu: React.FunctionComponent = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
-
-  const closeMenu = useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <StyledMenu
