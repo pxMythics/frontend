@@ -66,12 +66,7 @@ export const MintButton: React.FunctionComponent<Props> = ({ size = 'short' }) =
 
   return (
     <>
-      <BaseButton
-        onClick={onMintClick}
-        disabled={buttonDisabled()}
-        variant="contained"
-        isLong={size === 'long'}
-      >
+      <BaseButton onClick={onMintClick} disabled={buttonDisabled()} variant="contained">
         {t(buttonTitleKey(), { count: (mintCount ?? 0) - (tokenBalance ?? 0) })}
       </BaseButton>
       {mintType !== MintType.NONE && (
