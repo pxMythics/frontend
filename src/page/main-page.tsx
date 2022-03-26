@@ -18,9 +18,9 @@ export const MainPage: React.FunctionComponent = () => {
         <>
           <RoadmapTopSection />
           <RoadmapBottomSection />
-          <TeamSection />
         </>
       )}
+      <TeamSection />
       <Footer />
     </PageLayout>
   );

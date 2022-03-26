@@ -157,7 +157,7 @@ export const en = {
       title: 'THE TEAM',
       vitruvian: {
         name: '0xVitruvian',
-        title: 'Loremaster & Community Manager',
+        title: 'Loremaster &\nCommunity Manager',
       },
       snotty: {
         name: 'Snotty',
@@ -189,7 +189,7 @@ export const en = {
       },
       kaz: {
         name: 'Kaz',
-        title: 'Founder & Project Lead',
+        title: 'Founder &\nProject Lead',
       },
       renaissance: {
         name: '0xRen',
