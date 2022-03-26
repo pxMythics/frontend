@@ -1,3 +1,4 @@
+import { useLocalStorage } from 'beautiful-react-hooks';
 import { Column } from 'components/base/column';
 import { Claim } from 'components/claim/claim';
 import { ClaimStep1 } from 'components/claim/claim-step1';
@@ -11,10 +12,15 @@ import { ClaimStep8 } from 'components/claim/claim-step8';
 import { ClaimStep9 } from 'components/claim/claim-step9';
 import { useLogger } from 'provider/logger-provider';
 import React, { useCallback, useState } from 'react';
+import { LocalStorageKey } from 'service/local-storage';
 import styled from 'styled-components';
 
 export const ClaimPage: React.FunctionComponent = () => {
-  const [step, setStep] = useState(1);
+  const [claimAnimationSeen] = useLocalStorage<boolean>(
+    LocalStorageKey.CLAIM_ANIMATION_SEEN,
+    false,
+  );
+  const [step, setStep] = useState(claimAnimationSeen ? 10 : 1);
   const moveToNextStep = useCallback(() => {
     setStep(step + 1);
   }, [step]);
