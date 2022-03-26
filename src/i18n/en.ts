@@ -63,12 +63,7 @@ export const en = {
         'Both the 1,000 supply Mythic Genesis collection and the following 6,111 Mythic creatures collection will generate $DVN - the native token within the pxMythics Universe.',
       text4:
         '$DVN will initially be used to ascend worthy creatures into the ethereal world of the Gods, demigods, and elementals –– but that is not where its use case stops. $DVN will be the core of the ever expanding, ever evolving, pxMythics NFT ecosystem.',
-      shiva: 'Shiva',
-      chaac: 'Chaac',
-      raijin: 'Raijin',
-      kaishen: 'Kaishen',
-      anubis: 'Anubis',
-      odin: 'Odin',
+      god: 'god',
       claim: {
         button: 'Claim your $DVN',
       },
@@ -162,7 +157,7 @@ export const en = {
       title: 'THE TEAM',
       vitruvian: {
         name: '0xVitruvian',
-        title: 'Loremaster & Community Manager',
+        title: 'Loremaster &\nCommunity Manager',
       },
       snotty: {
         name: 'Snotty',
@@ -194,7 +189,7 @@ export const en = {
       },
       kaz: {
         name: 'Kaz',
-        title: 'Founder & Project Lead',
+        title: 'Founder &\nProject Lead',
       },
       renaissance: {
         name: '0xRen',
@@ -216,6 +211,13 @@ export const en = {
         },
         error: 'Error claiming your orbs. Please try again.',
       },
+    },
+    claim: {
+      continue: 'continue',
+      claim: 'claim',
+      title: 'Claim your rewards now',
+      tokens: '{{count}} $DVN',
+      subtitle: 'Number of available tokens to claim',
     },
   },
 };

@@ -44,11 +44,15 @@ const BottomContainer = styled(Column)`
 `;
 
 const PaddedTitle = styled(Typography)`
-  margin-bottom: 4px;
+  && {
+    margin-bottom: 4px;
+  }
 `;
 
 const PaddedSubtitle = styled(Typography)`
-  margin-bottom: 16px;
+  && {
+    margin-bottom: 16px;
+  }
 `;
 
 const AbsolutePosContainer = styled(Column)`

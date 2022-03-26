@@ -21,9 +21,7 @@ const MobileMenu: React.FunctionComponent = () => {
   return (
     <>
       <MobileMenuContainer>
-        <FixedHeightBox>
-          <Logo />
-        </FixedHeightBox>
+        <Logo width={212} height={62} />
       </MobileMenuContainer>
       {/*<AbsolutePositionIconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>*/}
       {/*  <img src={hamburgerMenu} alt={'Menu'} />*/}
@@ -38,9 +36,7 @@ const DesktopMenu: React.FunctionComponent = (props) => {
   return (
     <DesktopMenuContainer {...props}>
       <CenteredContainer>
-        <FixedHeightBox>
-          <Logo />
-        </FixedHeightBox>
+        <Logo width={212} height={62} />
         <MenuItemContainer>
           <StyledMenuItem>
             <InternalLink to={Section.HOME}>{t('menu.home')}</InternalLink>
@@ -94,7 +90,7 @@ const AppToolbar = styled(Toolbar)`
     mix-blend-mode: normal;
     box-shadow: 0 9px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6px);
-    height: 82px;
+    padding: 10px 0;
   }
 `;
 
@@ -115,11 +111,8 @@ const CenteredContainer = styled(Box)`
   flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
+  padding: 0 16px;
   max-width: 1200px;
-`;
-
-const FixedHeightBox = styled(Box)`
-  height: 62px;
 `;
 
 const MenuItemContainer = styled(Box)`

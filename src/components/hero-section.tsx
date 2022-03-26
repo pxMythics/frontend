@@ -8,6 +8,8 @@ import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { ImageSlide } from 'components/image-slide';
 import { Section } from 'constant';
+import { useMediaValues } from 'hooks/use-media-values';
+import { useOnDesktop } from 'hooks/use-on-desktop';
 import { toPairs } from 'ramda';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +18,10 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const HeroSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
+  const isDesktop = useOnDesktop();
+  const logoWidth = useMediaValues<number>({ phone: 313, desktop: 532 });
+  const logoHeight = useMediaValues<number>({ phone: 91, desktop: 155 });
+
   const slides = toPairs({ thor: thor, amaterasu: amaterasu, quetzalcoatl: quetzalcoatl }).map(
     (value) => ({
       key: value[0],
@@ -25,32 +31,38 @@ export const HeroSection: React.FunctionComponent = () => {
 
   return (
     <Container id={Section.HOME}>
-      <CarouselContainer>
-        <Carousel showNavigation={false} slides={slides} autoPlay={true} interval={3} />
-      </CarouselContainer>
-      <CenteredColumn>
-        <StyledTypography variant={'h2'}>{t('hero.title')}</StyledTypography>
-        <AbsolutePosLogo>
-          <Logo />
-        </AbsolutePosLogo>
-        <Typography variant={'h3'}>{t('hero.subtitle')}</Typography>
-      </CenteredColumn>
-      {/*<ContainerWithShadow>*/}
-      {/*  <MintButton size={'long'} />*/}
-      {/*</ContainerWithShadow>*/}
+      <DesktopContainer>
+        <CarouselContainer>
+          <Carousel showNavigation={false} slides={slides} autoPlay={true} interval={3} />
+        </CarouselContainer>
+        <CenteredColumn>
+          <Title variant={isDesktop ? 'h2' : 'h3'}>{t('hero.title')}</Title>
+          <StyledLogo width={logoWidth} height={logoHeight} />
+          <TitlePt2 variant={'h3'}>{t('hero.subtitle')}</TitlePt2>
+        </CenteredColumn>
+        {/*<ContainerWithShadow>*/}
+        {/*  <MintButton size={'long'} />*/}
+        {/*</ContainerWithShadow>*/}
+      </DesktopContainer>
     </Container>
   );
 };
 
 const Container = styled(Column)`
-  padding-top: 120px;
-  height: 660px;
-  ${(props): string => props.theme.mediaQueries.desktop} {
-    height: 870px;
-  }
+  width: 100%;
+  padding: 84px 46px 90px;
   background: url(${background});
   background-size: cover;
   align-items: center;
+  ${(props) => props.theme.mediaQueries.desktop} {
+    padding: 120px 32px 72px;
+  }
+`;
+
+const DesktopContainer = styled(Column)`
+  width: 100%;
+  align-items: center;
+  max-width: 1000px;
 `;
 
 const CarouselContainer = styled(Box)`
@@ -63,29 +75,29 @@ const CarouselContainer = styled(Box)`
 
 const CenteredColumn = styled(Column)`
   align-items: center;
-  padding-bottom: 40px;
-`;
-
-const AbsolutePosLogo = styled(Box)`
-  width: 100%;
   justify-content: center;
-  position: absolute;
-  top: 24px;
+`;
+
+const StyledLogo = styled(Logo)`
+  transform: translateY(-21px);
   ${(props): string => props.theme.mediaQueries.desktop} {
-    top: 48px;
-  }
-  > svg {
-    width: 80%;
-    height: 100%;
+    transform: translateY(-48px);
   }
 `;
 
-const StyledTypography = styled(Typography)`
-  ${(props): string => props.theme.mediaQueries.desktop} {
-    padding-bottom: 112px;
+const Title = styled(Typography)`
+  && {
+    color: ${(props): FlattenSimpleInterpolation | null => css`
+      ${props.theme.palette.primary.main}
+    `};
   }
-  padding-bottom: 64px;
-  color: ${(props): FlattenSimpleInterpolation | null => css`
-    ${props.theme.palette.primary.main}
-  `};
+`;
+
+const TitlePt2 = styled(Typography)`
+  && {
+    transform: translateY(-21px);
+    ${(props) => props.theme.mediaQueries.desktop} {
+      transform: translateY(-48px);
+    }
+  }
 `;
