@@ -217,5 +217,9 @@ export const en = {
         error: 'Error claiming your orbs. Please try again.',
       },
     },
+    claim: {
+      continue: 'continue',
+      claim: 'claim',
+    },
   },
 };

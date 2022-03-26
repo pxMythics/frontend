@@ -22,6 +22,7 @@ declare module '@mui/material/styles' {
     claim: {
       bg: string;
       input: string;
+      button: string;
     };
   }
 }
@@ -58,6 +59,7 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
           claim: {
             bg: '#2F263B',
             input: '#FFBF0A',
+            button: '#181421',
           },
         },
         breakpoints: {
