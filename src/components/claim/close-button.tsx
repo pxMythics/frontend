@@ -17,7 +17,10 @@ export const CloseButton: React.FunctionComponent<Props> = ({ visible, ...rest }
 const StyledLink = styled(({ visible, ...rest }) => <Link {...rest} />)<{ visible?: boolean }>`
   line-height: 0;
   border: 2.4px solid #ffffff;
-  padding: 10px;
+  padding: 8px;
   transition: opacity linear 1500ms;
   opacity: ${(props) => (props.visible ? 1 : 0)};
+  ${(props) => props.theme.mediaQueries.desktop} {
+    padding: 10px;
+  }
 `;

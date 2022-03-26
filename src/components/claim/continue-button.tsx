@@ -25,15 +25,19 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
 }>`
   font-family: Joystix Monospace;
   width: max-content;
-  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
   color: #ffffff;
-  padding: 10px 22px;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px 18px;
   background: ${(props) => props.theme.palette.claim.button};
   cursor: ${(props) => (props.visible ? 'pointer' : 'default')};
   transition: opacity linear 1s;
   opacity: ${(props) => (props.visible ? 1 : 0)};
   user-select: none;
+  ${(props) => props.theme.mediaQueries.desktop} {
+    font-size: 24px;
+    line-height: 29px;
+    padding: 10px 22px;
+  }
 `;

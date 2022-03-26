@@ -27,18 +27,22 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   position: relative;
   width: max-content;
   font-family: Joystix Monospace;
-  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px 18px;
   color: #ffffff;
-  padding: 10px 22px;
   background: ${(props) => props.theme.palette.claim.button};
   cursor: ${(props) => (props.visible ? 'pointer' : 'default')};
   transition: opacity linear 300ms;
   border: 2px solid #fff;
   opacity: ${(props) => (props.visible ? 1 : 0)};
   user-select: none;
+  ${(props) => props.theme.mediaQueries.desktop} {
+    font-size: 24px;
+    line-height: 29px;
+    padding: 10px 22px;
+  }
 `;
 
 const TopLeftSquare = styled(SquareSvg)`
