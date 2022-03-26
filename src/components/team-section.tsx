@@ -98,7 +98,9 @@ const BorderedImage = styled(Column)`
 `;
 
 const PaddedTeamTitle = styled(Typography)`
-  margin-bottom: 8px;
+  && {
+    margin-bottom: 8px;
+  }
 `;
 
 const Subtitle = styled.span`

@@ -320,5 +320,7 @@ const PaddedColumn = styled(Column)`
 `;
 
 const PaddedSubtitle2 = styled(Typography)`
-  padding: 18px 32px;
+  && {
+    padding: 18px 32px;
+  }
 `;

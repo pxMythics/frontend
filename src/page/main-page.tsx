@@ -13,9 +13,9 @@ export const MainPage: React.FunctionComponent = () => {
   return (
     <PageLayout>
       <HeroSection />
+      <AboutSection />
       {!isMobile && (
         <>
-          <AboutSection />
           <RoadmapTopSection />
           <RoadmapBottomSection />
           <TeamSection />

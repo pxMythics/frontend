@@ -115,7 +115,9 @@ const PaddedColumn = styled(Column)`
 `;
 
 const PaddedTypography = styled(Typography)`
-  padding-bottom: 10px;
+  && {
+    padding-bottom: 10px;
+  }
 `;
 
 const WhiteCircularProgress = styled(CircularProgress)`

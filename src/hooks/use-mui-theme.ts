@@ -93,53 +93,72 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
     fontFamily: 'Press Start 2P, Roboto',
     h1: {
       fontFamily: `'Press Start 2P'`,
-      fontSize: '116px',
-      lineHeight: '116px',
+      fontSize: '50px',
+      lineHeight: '50px',
       color: theme.palette.primary.main,
+      textAlign: 'center',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '116px',
+        lineHeight: '116px',
+      },
     },
     h2: {
       fontFamily: `'Press Start 2P'`,
-      fontSize: '80px',
-      lineHeight: '80px',
-      [theme.breakpoints.down('md')]: {
-        fontSize: '40px',
-        lineHeight: '40px',
+      fontSize: '50px',
+      lineHeight: '50px',
+      textAlign: 'center',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '80px',
+        lineHeight: '80px',
       },
       color: 'white',
     },
     h3: {
       fontFamily: `'Press Start 2P'`,
-      fontSize: '60px',
-      lineHeight: '60px',
-      [theme.breakpoints.down('md')]: {
-        fontSize: '30px',
-        lineHeight: '30px',
+      fontSize: '30px',
+      lineHeight: '30px',
+      textAlign: 'center',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '60px',
+        lineHeight: '60px',
       },
       color: theme.palette.primary.main,
     },
     h4: {
       fontWeight: 700,
-      fontSize: '48px',
-      lineHeight: '56px',
+      fontSize: '28px',
+      lineHeight: '33px',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '48px',
+        lineHeight: '56px',
+      },
     },
     h5: {
       fontWeight: 700,
-      fontSize: '24px',
-      lineHeight: '28px',
+      fontSize: '20px',
+      lineHeight: '23px',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '24px',
+        lineHeight: '28px',
+      },
       color: 'black',
     },
     h6: {
       fontFamily: `'Press Start 2P'`,
-      fontSize: '44px',
-      lineHeight: '54px',
+      fontSize: '32px',
+      lineHeight: '32px',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '44px',
+        lineHeight: '54px',
+      },
       color: theme.palette.secondaryGradientStart.main,
     },
     body1: {
-      fontSize: '18px',
-      lineHeight: '22px',
-      [theme.breakpoints.down('md')]: {
-        fontSize: '16px',
-        lineHeight: '18px',
+      fontSize: '16px',
+      lineHeight: '18px',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '18px',
+        lineHeight: '22px',
       },
       color: 'white',
     },
@@ -155,7 +174,10 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
     },
     subtitle2: {
       fontSize: '16px',
-      lineHeight: '20px',
+      lineHeight: '19px',
+      [theme.breakpoints.up('lg')]: {
+        lineHeight: '20px',
+      },
       color: 'black',
     },
     caption: {
@@ -164,7 +186,6 @@ export const useMuiTheme = (): Partial<DefaultTheme> => {
       lineHeight: '24px',
       color: 'white',
     },
-
     button: {
       textTransform: 'unset',
     },
