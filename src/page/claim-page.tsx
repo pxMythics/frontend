@@ -1,4 +1,5 @@
 import { Column } from 'components/base/column';
+import { Claim } from 'components/claim/claim';
 import { ClaimStep1 } from 'components/claim/claim-step1';
 import { ClaimStep2 } from 'components/claim/claim-step2';
 import { ClaimStep3 } from 'components/claim/claim-step3';
@@ -31,6 +32,7 @@ export const ClaimPage: React.FunctionComponent = () => {
       {step === 7 && <ClaimStep7 onContinue={moveToNextStep} />}
       {step === 8 && <ClaimStep8 onContinue={moveToNextStep} />}
       {step === 9 && <ClaimStep9 onContinue={moveToNextStep} />}
+      {step === 10 && <Claim />}
     </Container>
   );
 };

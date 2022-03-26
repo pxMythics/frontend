@@ -4,32 +4,28 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import styled from 'styled-components';
 
-export const ClaimStep7: React.FunctionComponent<ClaimStepProps> = ({ onContinue }) => {
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
-  return (
-    <Container>
-      <Lottie
-        options={defaultOptions}
-        eventListeners={[
-          {
-            eventName: 'complete',
-            callback: () => {
-              onContinue?.();
-            },
+export const ClaimStep7: React.FunctionComponent<ClaimStepProps> = ({ onContinue }) => (
+  <Container>
+    <Lottie
+      options={{
+        loop: false,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice',
+        },
+      }}
+      eventListeners={[
+        {
+          eventName: 'complete',
+          callback: () => {
+            onContinue?.();
           },
-        ]}
-      />
-    </Container>
-  );
-};
+        },
+      ]}
+    />
+  </Container>
+);
 
 const Container = styled.div`
   position: relative;

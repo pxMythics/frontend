@@ -220,6 +220,9 @@ export const en = {
     claim: {
       continue: 'continue',
       claim: 'claim',
+      title: 'Claim your rewards now',
+      tokens: '{{count}} $DVN',
+      subtitle: 'Number of available tokens to claim',
     },
   },
 };

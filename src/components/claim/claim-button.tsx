@@ -25,6 +25,7 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   visible: boolean;
 }>`
   position: relative;
+  width: max-content;
   font-family: Joystix Monospace;
   font-style: normal;
   font-weight: 400;
@@ -37,6 +38,7 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   transition: opacity linear 300ms;
   border: 2px solid #fff;
   opacity: ${(props) => (props.visible ? 1 : 0)};
+  user-select: none;
 `;
 
 const TopLeftSquare = styled(SquareSvg)`

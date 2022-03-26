@@ -1,4 +1,5 @@
 import animationData from 'assets/animations/claim/desktop/animation_9.json';
+import { useTimeout } from 'beautiful-react-hooks';
 import { ButtonContainer } from 'components/claim/button-container';
 import { ClaimButton } from 'components/claim/claim-button';
 import { ClaimStepProps } from 'components/claim/claim-step-props';
@@ -9,36 +10,23 @@ import styled from 'styled-components';
 
 export const ClaimStep9: React.FunctionComponent<ClaimStepProps> = ({ onContinue }) => {
   const [buttonVisible, setButtonVisible] = useState(true);
-
-  useEffect((): VoidFunction => {
-    let timeout: ReturnType<typeof setTimeout> | null = null;
-    if (!buttonVisible) {
-      timeout = setTimeout(() => onContinue?.(), 320);
-    }
-    return (): void => {
-      if (!isNil(timeout)) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [buttonVisible]);
-
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
+  useTimeout(() => setButtonVisible(false), 1200);
 
   return (
     <Container>
       <Lottie
-        options={defaultOptions}
+        options={{
+          loop: false,
+          autoplay: true,
+          animationData: animationData,
+          rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+          },
+        }}
         eventListeners={[
           {
             eventName: 'complete',
-            callback: () => setButtonVisible(false),
+            callback: () => onContinue?.(),
           },
         ]}
       />

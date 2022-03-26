@@ -24,6 +24,7 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   visible: boolean;
 }>`
   font-family: Joystix Monospace;
+  width: max-content;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -34,4 +35,5 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   cursor: ${(props) => (props.visible ? 'pointer' : 'default')};
   transition: opacity linear 1s;
   opacity: ${(props) => (props.visible ? 1 : 0)};
+  user-select: none;
 `;

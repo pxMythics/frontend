@@ -9,19 +9,17 @@ import styled from 'styled-components';
 export const ClaimStep8: React.FunctionComponent<ClaimStepProps> = ({ onContinue }) => {
   const [buttonVisible, setButtonVisible] = useState(false);
 
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
   return (
     <Container>
       <Lottie
-        options={defaultOptions}
+        options={{
+          loop: false,
+          autoplay: true,
+          animationData: animationData,
+          rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+          },
+        }}
         eventListeners={[
           {
             eventName: 'complete',
