@@ -14,8 +14,6 @@ import { Box } from 'components/base/box';
 import { Column } from 'components/base/column';
 import { Section } from 'constant';
 import { useOnDesktop } from 'hooks/use-on-desktop';
-import { useLogger } from 'provider/logger-provider';
-import { isNil } from 'ramda';
 import React, { Ref, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
@@ -29,7 +27,6 @@ interface TeamMember {
 export const TeamSection: React.FunctionComponent = () => {
   const { t } = useTranslation();
   const isDesktop = useOnDesktop();
-  const logger = useLogger();
   const team: TeamMember[] = [
     {
       name: t('team.vitruvian.name'),
@@ -117,7 +114,6 @@ export const TeamSection: React.FunctionComponent = () => {
 
   const getTransY = (height: number): number => {
     const lineHeight = isDesktop ? 22 : 18;
-    logger.debug(`height ${height}`);
     if (height > lineHeight) {
       return lineHeight;
     }
