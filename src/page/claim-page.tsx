@@ -10,7 +10,6 @@ import { ClaimStep6 } from 'components/claim/claim-step6';
 import { ClaimStep7 } from 'components/claim/claim-step7';
 import { ClaimStep8 } from 'components/claim/claim-step8';
 import { ClaimStep9 } from 'components/claim/claim-step9';
-import { useLogger } from 'provider/logger-provider';
 import React, { useCallback, useState } from 'react';
 import { LocalStorageKey } from 'service/local-storage';
 import styled from 'styled-components';
@@ -24,8 +23,6 @@ export const ClaimPage: React.FunctionComponent = () => {
   const moveToNextStep = useCallback(() => {
     setStep(step + 1);
   }, [step]);
-  const logger = useLogger();
-  logger.debug(`current step: ${step}`);
 
   return (
     <Container>
