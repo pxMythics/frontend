@@ -11,6 +11,7 @@ declare module '@mui/material/styles' {
     claim: {
       bg: string;
       input: string;
+      button: string;
     };
   }
 

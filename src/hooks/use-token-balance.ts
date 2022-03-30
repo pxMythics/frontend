@@ -1,18 +1,20 @@
-import { useContractCall, useEthers } from '@usedapp/core';
-import { Config } from 'config';
-import { useContractAbi } from 'hooks/use-contract-abi';
+import { useCall, useEthers } from '@usedapp/core';
+import { useContract } from 'hooks/use-contract';
+import { isNil } from 'ramda';
 
 export const useTokenBalance = (): number | undefined => {
   const { account } = useEthers();
-  const contractABI = useContractAbi();
-  const tokenBalance = useContractCall(
-    account &&
-      Config.contractAddress && {
-        abi: contractABI, // ABI interface of the called contract
-        address: Config.contractAddress, // On-chain address of the deployed contract
+  const contract = useContract();
+  const result = useCall(
+    !isNil(account) &&
+      !isNil(contract) && {
+        contract,
         method: 'balanceOf', // Method to be called
         args: [account], // Method arguments - address to be checked for balance
       },
   );
-  return tokenBalance && Number(tokenBalance[0]);
+  if (isNil(result)) {
+    return 0;
+  }
+  return Number(result.value?.[0]);
 };

@@ -1,18 +1,23 @@
 import { Contract } from '@ethersproject/contracts';
 import { Config } from 'config';
-import { useContractAbi, useOrbsContractAbi } from 'hooks/use-contract-abi';
-import { useContractAddress } from 'hooks/use-contract-address';
-import { useMemo, useRef } from 'react';
+import { Interface } from '@ethersproject/abi';
+import genesis from 'contract/genesis.json';
+import genesisReveal from 'contract/genesis-reveal.json';
+import orbs from 'contract/orbs.json';
+import dvnStaker from 'contract/dvn-staker.json';
+import dvn from 'contract/dvn.json';
 
-export const useContract = () => {
-  const contractABI = useContractAbi();
-  const contractAddress = useContractAddress();
-  const contract = useRef<Contract>(new Contract(contractAddress, contractABI));
-  return contract.current;
-};
+export const useContract = (): Contract =>
+  new Contract(Config.contractAddress, new Interface(genesis));
 
-export const useOrbContract = (): Contract => {
-  const abi = useOrbsContractAbi();
-  const contract = useMemo(() => new Contract(Config.orbContractAddress, abi), []);
-  return contract;
-};
+export const useOrbContract = (): Contract =>
+  new Contract(Config.orbContractAddress, new Interface(orbs));
+
+export const useDvnStakerContract = (): Contract =>
+  new Contract(Config.dvnStakerContractAddress, new Interface(dvnStaker));
+
+export const useGenesisRevealContract = (): Contract =>
+  new Contract(Config.genesisRevealContractAddress, new Interface(genesisReveal));
+
+export const useDvnContract = (): Contract =>
+  new Contract(Config.dvnContractAddress, new Interface(dvn));
