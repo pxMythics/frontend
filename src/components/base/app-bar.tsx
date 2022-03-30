@@ -1,7 +1,6 @@
-import { AppBar as MuiAppBar, IconButton, MenuItem, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, MenuItem, Toolbar } from '@mui/material';
 import { ReactComponent as DiscordLogo } from 'assets/img/discord-icon.svg';
 import { ReactComponent as Logo } from 'assets/img/logo.svg';
-import hamburgerMenu from 'assets/img/navbar_mobile_icon-menu.png';
 import { ReactComponent as OpenSeaLogo } from 'assets/img/opensea-icon.svg';
 import { ReactComponent as TwitterLogo } from 'assets/img/twitter-icon.svg';
 import { Box } from 'components/base/box';
@@ -11,13 +10,9 @@ import { discordLink, openSeaLink, Section, twitterLink } from 'constant';
 import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRecoilState } from 'recoil';
-import { isMobileMenuOpen } from 'service/state';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const MobileMenu: React.FunctionComponent = () => {
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMobileMenuOpen);
-
   return (
     <>
       <MobileMenuContainer>
@@ -145,11 +140,4 @@ const MobileMenuContainer = styled(Box)`
   width: 100%;
   align-items: center;
   justify-content: center;
-`;
-
-const AbsolutePositionIconButton = styled(IconButton)`
-  && {
-    position: absolute;
-    right: 0;
-  }
 `;

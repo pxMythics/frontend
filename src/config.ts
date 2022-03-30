@@ -1,5 +1,4 @@
 import {
-  Chain,
   Config as DAppConfig,
   Goerli,
   Hardhat,
@@ -14,57 +13,61 @@ enum EnvironmentType {
   PROD = 'prod',
 }
 
+enum ChainName {
+  Goerli = 'goerli',
+  Hardhat = 'hardhat',
+  Kovan = 'kovan',
+  Mainnet = 'mainnet',
+  Rinkeby = 'rinkeby',
+  Ropsten = 'ropsten',
+}
+
 interface FrontendConfig {
   isDebug: boolean;
   contractAddress: string;
+  genesisRevealContractAddress: string;
   orbContractAddress: string;
+  dvnStakerContractAddress: string;
+  dvnContractAddress: string;
   apiUrl: string;
   DAppConfig: DAppConfig;
-  supportedNetworks: Chain[];
 }
 
-const computeDAppConfig = (isStaging: boolean, alchemyUrl: string): DAppConfig => {
-  return isStaging
-    ? getIsLocalNode()
-      ? {
-          networks: [Hardhat],
-          // TODO This should be done automatically
-          multicallAddresses: { [Hardhat.chainId]: '0x5fbdb2315678afecb367f032d93f642f64180aa3' },
-        }
-      : {
-          readOnlyChainId: Rinkeby.chainId,
-          readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
-          networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
-        }
-    : {
-        readOnlyChainId: Mainnet.chainId,
-        readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
-        networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
-      };
+const computeDAppConfig = (chainName: ChainName, alchemyUrl: string): DAppConfig => {
+  if (chainName === ChainName.Rinkeby) {
+    return {
+      readOnlyChainId: Rinkeby.chainId,
+      readOnlyUrls: { [Rinkeby.chainId]: alchemyUrl },
+      networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
+    };
+  }
+  if (chainName === ChainName.Mainnet) {
+    return {
+      readOnlyChainId: Mainnet.chainId,
+      readOnlyUrls: { [Mainnet.chainId]: alchemyUrl },
+      networks: [Mainnet, Rinkeby, Ropsten, Goerli, Kovan],
+    };
+  }
+  return {
+    networks: [Hardhat],
+    multicallAddresses: { [Hardhat.chainId]: '0x5ba1e12693dc8f9c48aad8770482f4739beed696' },
+  };
 };
+
 const computeConfig = (): FrontendConfig => {
   const buildType = getEnvironmentType();
-
-  console.info('Build type [%s].', buildType);
-
+  const chainName = getChainName();
   // Fetch config from injected config when in prod (see index.html)
-  const { alchemyUrl, contractAddress, isStaging, apiUrl, orbContractAddress } = window.CONFIG || {
-    alchemyUrl: getAlchemyUrl(),
-    contractAddress: getContractAddress(),
-    apiUrl: getBackendUrl(),
-    orbContractAddress: getOrbContractAddress(),
-    // More or less a hack, we want to be on rinkeby on staging but we don't pass the environment type
-    // we inject it directly in the config
-    isStaging: buildType === EnvironmentType.DEBUG,
-  };
-
+  const { alchemyUrl, apiUrl, orbContractAddress } = window.CONFIG ?? {};
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
-    contractAddress: contractAddress || '0x976f87a62e8e2a9408E55D009d1022b5Ba8516f7',
-    apiUrl,
-    orbContractAddress,
-    DAppConfig: computeDAppConfig(isStaging, alchemyUrl),
-    supportedNetworks: isStaging ? [Rinkeby] : [Mainnet],
+    contractAddress: getContractAddress(chainName),
+    genesisRevealContractAddress: getGenesisRevealContractAddress(chainName),
+    apiUrl: apiUrl ?? 'https://pxmythics.io/api',
+    orbContractAddress: orbContractAddress,
+    DAppConfig: computeDAppConfig(chainName, alchemyUrl ?? getAlchemyUrl()),
+    dvnStakerContractAddress: getDvnStakerContractAddress(chainName),
+    dvnContractAddress: getDvnContractAddress(chainName),
   };
 };
 
@@ -72,7 +75,6 @@ const getEnvironmentType = (): EnvironmentType => {
   if (getBuildEnvironment() === 'production') {
     return EnvironmentType.PROD;
   }
-
   return EnvironmentType.DEBUG;
 };
 
@@ -84,10 +86,47 @@ const getEnvironmentType = (): EnvironmentType => {
  * like `return "production"` (assuming `process.env.NODE_ENV` equals `production`).
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
-const getContractAddress = (): string => process.env.REACT_APP_CONTRACT_ADDRESS!;
-const getOrbContractAddress = (): string => process.env.REACT_APP_ORB_CONTRACT_ADDRESS!;
-const getBackendUrl = (): string => process.env.REACT_APP_BACKEND_URL!;
+const getChainName = (): ChainName =>
+  (process.env.REACT_APP_CHAIN as ChainName) ?? ChainName.Hardhat;
 const getAlchemyUrl = (): string => process.env.REACT_APP_ALCHEMY_URL!;
-const getIsLocalNode = (): boolean => process.env.REACT_APP_LOCAL_NODE! === 'true';
+const getContractAddress = (chainName: ChainName): string => {
+  if (chainName === ChainName.Rinkeby) {
+    return '';
+  }
+  return '0x12c63bbD266dB84e117356e664f3604055166CEc';
+};
+const getOrbContractAddress = (chainName: ChainName): string => {
+  if (chainName === ChainName.Rinkeby) {
+    return '';
+  }
+  return '';
+};
+const getGenesisRevealContractAddress = (chainName: ChainName): string => {
+  if (chainName === ChainName.Rinkeby) {
+    return '';
+  }
+  if (chainName === ChainName.Hardhat) {
+    return '0xb63b300449B65EC58eCC6B94fAc9056411BAfC66';
+  }
+  return '0xb63b300449B65EC58eCC6B94fAc9056411BAfC66';
+};
+const getDvnContractAddress = (chainName: ChainName): string => {
+  if (chainName === ChainName.Rinkeby) {
+    return '';
+  }
+  if (chainName === ChainName.Hardhat) {
+    return '0xb19b36b1456E65E3A6D514D3F715f204BD59f431';
+  }
+  return '0xb19b36b1456E65E3A6D514D3F715f204BD59f431';
+};
+const getDvnStakerContractAddress = (chainName: ChainName): string => {
+  if (chainName === ChainName.Rinkeby) {
+    return '';
+  }
+  if (chainName === ChainName.Hardhat) {
+    return '0xe1Aa25618fA0c7A1CFDab5d6B456af611873b629';
+  }
+  return '0xe1Aa25618fA0c7A1CFDab5d6B456af611873b629';
+};
 
 export const Config: Readonly<FrontendConfig> = computeConfig();

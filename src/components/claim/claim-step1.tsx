@@ -15,7 +15,7 @@ export const ClaimStep1: React.FunctionComponent<ClaimStepProps> = ({ onContinue
   // set the animation as seen in local storage the first time the user sees it
   useEffect((): void => {
     setClaimAnimationSeen(true);
-  }, []);
+  }, [setClaimAnimationSeen]);
 
   return (
     <StepContainer>

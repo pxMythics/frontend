@@ -1,18 +1,24 @@
+import { useEthers } from '@usedapp/core';
+import { useTimeout } from 'beautiful-react-hooks';
 import { SquareSvg } from 'components/claim/square.svg';
-import React from 'react';
+import { isNil } from 'ramda';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-interface Props {
-  onClaim?: VoidFunction;
-  visible?: boolean;
-}
-
-export const ClaimButton: React.FunctionComponent<Props> = ({ onClaim, visible, ...rest }) => {
+export const ConnectButton: React.FunctionComponent = () => {
   const { t } = useTranslation();
+  const { activateBrowserWallet, account } = useEthers();
+  const [visible, setVisible] = useState(false);
+  useTimeout(() => setVisible(true), 200);
+
+  if (!isNil(account)) {
+    return null;
+  }
+
   return (
-    <StyledButton onClick={onClaim} visible={visible} {...rest}>
-      {t('claim.claim')}
+    <StyledButton onClick={activateBrowserWallet} visible={visible}>
+      {t('claim.connect')}
       <TopLeftSquare />
       <TopRightSquare />
       <BottomLeftSquare />
@@ -34,10 +40,11 @@ const StyledButton = styled(({ visible, ...rest }) => <div {...rest} />)<{
   color: #ffffff;
   background: ${(props) => props.theme.palette.claim.button};
   cursor: ${(props) => (props.visible ? 'pointer' : 'default')};
-  transition: opacity linear 2300ms;
+  transition: opacity linear 300ms;
   border: 2px solid #fff;
   opacity: ${(props) => (props.visible ? 1 : 0)};
   user-select: none;
+  align-self: center;
   ${(props) => props.theme.mediaQueries.desktop} {
     font-size: 24px;
     line-height: 29px;

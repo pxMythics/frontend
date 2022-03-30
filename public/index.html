@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="application/javascript">
+      var CONFIG;
+      try {
+        CONFIG = -==CONFIG==-;
+      } catch {
+        CONFIG = { environment: 'LOCAL' };
+      }
+    </script>
     <meta name="description" content="pxMythics" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <meta charset="utf-8" />
