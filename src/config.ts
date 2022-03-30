@@ -117,7 +117,7 @@ const getDvnContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Hardhat) {
     return '0xb19b36b1456E65E3A6D514D3F715f204BD59f431';
   }
-  return '0xb19b36b1456E65E3A6D514D3F715f204BD59f431';
+  return '0x0E82cd555ACB4F6A46CF563327E9261391B440cF';
 };
 const getDvnStakerContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Rinkeby) {
@@ -126,7 +126,7 @@ const getDvnStakerContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Hardhat) {
     return '0xe1Aa25618fA0c7A1CFDab5d6B456af611873b629';
   }
-  return '0xe1Aa25618fA0c7A1CFDab5d6B456af611873b629';
+  return '0x7B157449CE47aCa09190ad8777e3FC975e7b4A8f';
 };
 
 export const Config: Readonly<FrontendConfig> = computeConfig();
