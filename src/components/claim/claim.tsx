@@ -111,13 +111,14 @@ export const Claim: React.FunctionComponent = () => {
         return;
       }
       setAvailableTokens(
-        traits.reduce(
-          (previousValue, currentValue, currentIndex) =>
-            previousValue.add(
-              getRewardForGenesis(currentValue, timestamp, claimedAt[currentIndex]),
-            ),
-          BigNumber.from(0),
-        ),
+        traits
+          .map((trait, currentIndex) =>
+            getRewardForGenesis(trait, timestamp, claimedAt[currentIndex]),
+          )
+          .reduce(
+            (previousValue, currentValue) => previousValue.add(currentValue),
+            BigNumber.from(0),
+          ),
       );
       setTokenTextVisible(true);
       setSubtitleVisible(true);

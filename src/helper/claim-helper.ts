@@ -76,13 +76,8 @@ export const getRewardForGenesis = (
   currentTimestamp: number,
   lastClaimedTimestamp: number,
 ): BigNumber => {
-  console.debug(
-    `currentTimestamp ${currentTimestamp} lastClaimedTimestamp ${lastClaimedTimestamp}`,
-  );
   if (isNil(lastClaimedTimestamp) || lastClaimedTimestamp === 0) {
-    console.log(`start`);
     return getRewards(getGenesisMultiplierRate(tokenType), GENESIS_START, currentTimestamp);
   }
-  console.log(`wtf`);
   return getRewards(getGenesisMultiplierRate(tokenType), lastClaimedTimestamp, currentTimestamp);
 };
