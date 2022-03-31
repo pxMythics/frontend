@@ -62,6 +62,7 @@ const computeConfig = (): FrontendConfig => {
   const chainName = getChainName();
   // Fetch config from injected config when in prod (see index.html)
   const { alchemyUrl, apiUrl, orbContractAddress } = window.CONFIG ?? {};
+  console.log(`alchemy URL is ${alchemyUrl}`);
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     contractAddress: getContractAddress(chainName),
@@ -102,7 +103,7 @@ const getOrbContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Rinkeby) {
     return '';
   }
-  return '';
+  return '0x10Ba8353dD37c75384F09aeB630214D9f19258B0';
 };
 const getGenesisRevealContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Rinkeby) {

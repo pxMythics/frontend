@@ -12,6 +12,7 @@ import { getRewardForGenesis } from 'helper/claim-helper';
 import { useBackendClient } from 'hooks/use-backend-client';
 import { useDvnContract, useDvnStakerContract, useGenesisRevealContract } from 'hooks/use-contract';
 import { useOnDesktop } from 'hooks/use-on-desktop';
+import { useLogger } from 'provider/logger-provider';
 import { isEmpty, isNil, reject } from 'ramda';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +25,7 @@ export const Claim: React.FunctionComponent = () => {
   const genesisRevealContract = useGenesisRevealContract();
   const dvnStakerContract = useDvnStakerContract();
   const dvnContract = useDvnContract();
+  const logger = useLogger();
   const { state, send } = useContractFunction(dvnStakerContract, 'claim');
   const { activateBrowserWallet, account, error, library } = useEthers();
   const [containerVisible, setContainerVisible] = useState(false);
@@ -61,11 +63,12 @@ export const Claim: React.FunctionComponent = () => {
   );
   const getTimestamp = useCallback(() => {
     if (!isNil(library)) {
-      library
-        .getBlockNumber()
-        .then((blockNumber) =>
-          library.getBlock(blockNumber).then((block) => setTimestamp(block.timestamp)),
-        );
+      library.getBlockNumber().then((blockNumber) =>
+        library.getBlock(blockNumber).then((block) => {
+          logger.debug(`got block with ${JSON.stringify(block)}`);
+          setTimestamp(block.timestamp);
+        }),
+      );
     }
   }, [library]);
 
