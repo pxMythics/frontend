@@ -90,7 +90,7 @@ const getEnvironmentType = (): EnvironmentType => {
  */
 const getBuildEnvironment = (): string => process.env.NODE_ENV;
 const getChainName = (): ChainName =>
-  (process.env.REACT_APP_CHAIN as ChainName) ?? ChainName.Hardhat;
+  (process.env.REACT_APP_CHAIN as ChainName) ?? ChainName.Mainnet;
 const getAlchemyUrl = (): string => process.env.REACT_APP_ALCHEMY_URL!;
 const getContractAddress = (chainName: ChainName): string => {
   if (chainName === ChainName.Rinkeby) {
