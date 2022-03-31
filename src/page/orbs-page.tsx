@@ -173,7 +173,7 @@ export const OrbsPage: React.FunctionComponent = () => {
       deactivate();
       setConnected(false);
     }
-  }, [account, connected, isOnValidChain, claimState]);
+  }, [account, connected, isOnValidChain, claimState, deactivate]);
 
   useEffect(() => {
     if (claimState === ClaimState.CHECKING) {

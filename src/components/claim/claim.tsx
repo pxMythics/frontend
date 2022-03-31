@@ -12,7 +12,6 @@ import { getRewardForGenesis } from 'helper/claim-helper';
 import { useBackendClient } from 'hooks/use-backend-client';
 import { useDvnContract, useDvnStakerContract, useGenesisRevealContract } from 'hooks/use-contract';
 import { useOnDesktop } from 'hooks/use-on-desktop';
-import { useLogger } from 'provider/logger-provider';
 import { isEmpty, isNil, reject } from 'ramda';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,7 +24,6 @@ export const Claim: React.FunctionComponent = () => {
   const genesisRevealContract = useGenesisRevealContract();
   const dvnStakerContract = useDvnStakerContract();
   const dvnContract = useDvnContract();
-  const logger = useLogger();
   const { state, send } = useContractFunction(dvnStakerContract, 'claim');
   const { activateBrowserWallet, account, error, library } = useEthers();
   const [containerVisible, setContainerVisible] = useState(false);
@@ -63,13 +61,11 @@ export const Claim: React.FunctionComponent = () => {
   );
   const getTimestamp = useCallback(() => {
     if (!isNil(library)) {
-      library.getBlockNumber().then((blockNumber) => {
-        logger.info(`got blockNumber with ${JSON.stringify(blockNumber)}`);
-        library.getBlock(blockNumber).then((block) => {
-          logger.info(`got block with ${JSON.stringify(block)}`);
-          setTimestamp(block.timestamp);
-        });
-      });
+      library
+        .getBlockNumber()
+        .then((blockNumber) =>
+          library.getBlock(blockNumber).then((block) => setTimestamp(block.timestamp)),
+        );
     }
   }, [library]);
 
@@ -94,7 +90,7 @@ export const Claim: React.FunctionComponent = () => {
   // get latest block timestamp on mount
   useEffect((): void => {
     getTimestamp();
-  }, [library]);
+  }, [getTimestamp, library]);
 
   // get available tokens when traits and last claimed at are fetched
   useEffect((): void => {
@@ -114,9 +110,6 @@ export const Claim: React.FunctionComponent = () => {
       if (claimedAt.length !== tokenIdsLength) {
         return;
       }
-      logger.info(
-        `trying to fetch with traits length ${traits.length} timestamp ${timestamp} and claimedAt ${claimedAt.length}`,
-      );
       setAvailableTokens(
         traits
           .map((trait, currentIndex) =>
@@ -131,7 +124,7 @@ export const Claim: React.FunctionComponent = () => {
       setSubtitleVisible(true);
       setClaimButtonVisible(true);
     }
-  }, [timestamp, tokenTraits, tokenLastClaimedAt]);
+  }, [timestamp, tokenTraits, tokenLastClaimedAt, tokenIds.length]);
 
   // reload timestamp on claim
   useEffect((): void => {

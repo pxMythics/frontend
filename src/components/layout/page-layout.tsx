@@ -1,7 +1,5 @@
 import { AppBar } from 'components/base/app-bar';
 import { Column } from 'components/base/column';
-import { MobileSlidingMenu } from 'components/base/mobile-sliding-menu';
-import { useOnMobile } from 'hooks/use-on-mobile';
 import React from 'react';
 import styled from 'styled-components';
 

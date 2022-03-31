@@ -9,7 +9,7 @@ export interface ImageSlideProps {
   alt: string;
 }
 
-export const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt, ...rest }) => {
+export const ImageSlide: React.FunctionComponent<ImageSlideProps> = ({ src, alt }) => {
   const isMobile = useOnMobile();
   return isMobile ? (
     <ContainerWithShadow shadowWidth={200}>
