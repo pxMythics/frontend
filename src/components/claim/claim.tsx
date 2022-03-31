@@ -63,12 +63,13 @@ export const Claim: React.FunctionComponent = () => {
   );
   const getTimestamp = useCallback(() => {
     if (!isNil(library)) {
-      library.getBlockNumber().then((blockNumber) =>
+      library.getBlockNumber().then((blockNumber) => {
+        logger.info(`got blockNumber with ${JSON.stringify(blockNumber)}`);
         library.getBlock(blockNumber).then((block) => {
-          logger.debug(`got block with ${JSON.stringify(block)}`);
+          logger.info(`got block with ${JSON.stringify(block)}`);
           setTimestamp(block.timestamp);
-        }),
-      );
+        });
+      });
     }
   }, [library]);
 
@@ -113,6 +114,9 @@ export const Claim: React.FunctionComponent = () => {
       if (claimedAt.length !== tokenIdsLength) {
         return;
       }
+      logger.info(
+        `trying to fetch with traits length ${traits.length} timestamp ${timestamp} and claimedAt ${claimedAt.length}`,
+      );
       setAvailableTokens(
         traits
           .map((trait, currentIndex) =>

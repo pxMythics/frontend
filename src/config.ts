@@ -62,7 +62,6 @@ const computeConfig = (): FrontendConfig => {
   const chainName = getChainName();
   // Fetch config from injected config when in prod (see index.html)
   const { alchemyUrl, apiUrl, orbContractAddress } = window.CONFIG ?? {};
-  console.log(`alchemy URL is ${alchemyUrl}`);
   return {
     isDebug: buildType === EnvironmentType.DEBUG,
     contractAddress: getContractAddress(chainName),
