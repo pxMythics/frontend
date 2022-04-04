@@ -79,6 +79,8 @@ export const en = {
       bottom: {
         phase1: {
           title: 'PHASE ONE',
+          titleMobileTop: 'PHASE',
+          titleMobileBottom: 'ONE',
           subtitle:
             'The pxMythics Universe starts with the Mythics genesis collection –– A 1,000 supply NFT set with 3 different types of Genesis Mythics.',
           body1: {
@@ -106,6 +108,8 @@ export const en = {
         },
         phase2: {
           title: 'PHASE TWO',
+          titleMobileTop: 'PHASE',
+          titleMobileBottom: 'TWO',
           subtitle:
             'The first official use for $DVN will come with the release of the 6,111 generative mythic creatures collection, and will be spent on creature ascensions.',
           body1_1:
@@ -121,6 +125,8 @@ export const en = {
         },
         phase3: {
           title: 'PHASE THREE',
+          titleMobileTop: 'PHASE',
+          titleMobileBottom: 'THREE',
           subtitle:
             'pxMythics is dedicated to the community that makes the project possible in the first place, and our 3rd phase reflects that in the form of our planned DAO and factions.',
           body: {
@@ -147,6 +153,9 @@ export const en = {
           altRoadmap: 'PHASE FOUR',
           altGif: 'and more',
           title: 'AND MUCH MORE TO BE DISCOVERED...',
+          titleTop: 'AND MUCH MORE',
+          titleMiddle: 'TO BE',
+          titleBottom: 'DISCOVERED...',
           subtitle:
             'The pxMythics team has a wide array of ideas for utility, engagement, and project development beyond phase 3, so while this may be where we start –– it certainly will not be where we end.',
         },

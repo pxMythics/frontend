@@ -13,32 +13,26 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
   return (
     <Container>
       {/*PHASE ONE*/}
-      <Column>
-        <PhaseTypography>{t('roadmap.bottom.phase1.title')}</PhaseTypography>
-        <Typography variant={'h5'}>{t('roadmap.bottom.phase1.subtitle')}</Typography>
+      <StyledColumn>
+        <TopPhaseTypography>{t('roadmap.bottom.phase1.titleMobileTop')}</TopPhaseTypography>
+        <BottomPhaseTypography>
+          {t('roadmap.bottom.phase1.titleMobileBottom')}
+        </BottomPhaseTypography>
+        <H5Typography variant={'h5'}>{t('roadmap.bottom.phase1.subtitle')}</H5Typography>
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase1.body1.text1')}</Typography>
         <br />
         <StyledList>
           <li>
-            <span>
-              {t('roadmap.bottom.phase1.body1.subtext1.first')}
-              <br />
-              {t('roadmap.bottom.phase1.body1.subtext1.second')}
-            </span>
+            {t('roadmap.bottom.phase1.body1.subtext1.first')}&nbsp;
+            {t('roadmap.bottom.phase1.body1.subtext1.second')}
           </li>
           <li>
-            <span>
-              {t('roadmap.bottom.phase1.body1.subtext2.first')}
-              <br />
-              {t('roadmap.bottom.phase1.body1.subtext2.second')}
-            </span>
+            {t('roadmap.bottom.phase1.body1.subtext2.first')}&nbsp;
+            {t('roadmap.bottom.phase1.body1.subtext2.second')}
           </li>
           <li>
-            <span>
-              {t('roadmap.bottom.phase1.body1.subtext3.first')}
-              <br />
-              {t('roadmap.bottom.phase1.body1.subtext3.second')}
-            </span>
+            {t('roadmap.bottom.phase1.body1.subtext3.first')}&nbsp;
+            {t('roadmap.bottom.phase1.body1.subtext3.second')}
           </li>
         </StyledList>
         <br />
@@ -48,14 +42,17 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
           <li>{t('roadmap.bottom.phase1.body1.subtext4')}</li>
           <li>{t('roadmap.bottom.phase1.body1.subtext5')}</li>
         </StyledList>
-      </Column>
+      </StyledColumn>
       <PhaseGifContainer>
-        <GifContainer />
         <img src={phase1Gif} alt={t('roadmap.bottom.phase1.altGif')} />
       </PhaseGifContainer>
       {/*PHASE TWO*/}
-      <LeftAlignedColumn>
-        <PhaseTypography>{t('roadmap.bottom.phase2.title')}</PhaseTypography>
+      <StyledColumn>
+        <TopPhaseTypography>{t('roadmap.bottom.phase2.titleMobileTop')}</TopPhaseTypography>
+        <BottomPhaseTypography variant={'h2'}>
+          {t('roadmap.bottom.phase2.titleMobileBottom')}
+        </BottomPhaseTypography>
+        <H5Typography variant={'h5'}>{t('roadmap.bottom.phase2.subtitle')}</H5Typography>
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_1')}</Typography>
         <br />
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_2')}</Typography>
@@ -63,15 +60,17 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_3')}</Typography>
         <br />
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_4')}</Typography>
-      </LeftAlignedColumn>
-      <Typography variant={'h5'}>{t('roadmap.bottom.phase2.subtitle')}</Typography>
+      </StyledColumn>
       <PhaseGifContainer left>
-        <GifContainer left />
         <img src={phase2Gif} alt={t('roadmap.bottom.phase2.altGif')} />
       </PhaseGifContainer>
       {/*PHASE THREE*/}
-      <LeftAlignedColumn>
-        <PhaseTypography>{t('roadmap.bottom.phase3.title')}</PhaseTypography>
+      <StyledColumn>
+        <TopPhaseTypography>{t('roadmap.bottom.phase3.titleMobileTop')}</TopPhaseTypography>
+        <BottomPhaseTypography>
+          {t('roadmap.bottom.phase3.titleMobileBottom')}
+        </BottomPhaseTypography>
+        <H5Typography variant={'h5'}>{t('roadmap.bottom.phase3.subtitle')}</H5Typography>
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase3.body.text1')}</Typography>
         <br />
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase3.body.text2')}</Typography>
@@ -88,41 +87,55 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
           <li>{t('roadmap.bottom.phase3.body.subtext2.second')}</li>
         </StyledList>
         <br />
-      </LeftAlignedColumn>
-      <Typography variant={'h5'}>{t('roadmap.bottom.phase3.subtitle')}</Typography>
+      </StyledColumn>
       <PhaseGifContainer>
-        <GifContainer />
         <img src={phase3Gif} alt={t('roadmap.bottom.phase3.altGif')} />
       </PhaseGifContainer>
-      <Phase4Container>
-        <Phase4GifContainer>
-          <GifContainer />
-          <img src={phase4Gif} alt={t('roadmap.bottom.phase4.altGif')} />
-        </Phase4GifContainer>
-      </Phase4Container>
-      <PaddedColumn>
-        <Typography variant={'h6'}>{t('roadmap.bottom.phase4.title')}</Typography>
+      {/*PHASE FOUR*/}
+      <StyledColumn>
+        <Phase4HeadingContainer>
+          <Typography variant={'h6'}>{t('roadmap.bottom.phase4.titleTop')}</Typography>
+          <Typography variant={'h6'}>{t('roadmap.bottom.phase4.titleMiddle')}</Typography>
+          <Typography variant={'h6'}>{t('roadmap.bottom.phase4.titleBottom')}</Typography>
+        </Phase4HeadingContainer>
         <PaddedSubtitle2 variant={'subtitle2'}>
           {t('roadmap.bottom.phase4.subtitle')}
         </PaddedSubtitle2>
-      </PaddedColumn>
+        <Phase4GifContainer>
+          <img src={phase4Gif} alt={t('roadmap.bottom.phase4.altGif')} />
+        </Phase4GifContainer>
+      </StyledColumn>
     </Container>
   );
 };
 
 const Container = styled(Column)`
-  margin: 0px 24px;
   align-items: center;
-  border: 3px solid blue;
+`;
+const StyledColumn = styled(Column)`
+  margin: 0px 24px;
 `;
 
-const PhaseTypography = styled(({ left, ...renderProps }) => (
+const TopPhaseTypography = styled(({ left, ...renderProps }) => (
   <Typography variant={'h2'} {...renderProps} />
 ))<{
   left: boolean;
 }>`
-  border: 3px solid yellow;
   padding-top: 66px;
+  background: ${(props): FlattenSimpleInterpolation | null => css`
+      linear-gradient(180deg, 
+        ${props.theme.palette.secondaryGradientStart.main} 0%, 
+        ${props.theme.palette.secondaryGradientFinish.main} 100%);
+    `};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const BottomPhaseTypography = styled(({ left, ...renderProps }) => (
+  <Typography variant={'h2'} {...renderProps} />
+))<{
+  left: boolean;
+}>`
   padding-bottom: 35px;
   background: ${(props): FlattenSimpleInterpolation | null => css`
       linear-gradient(180deg, 
@@ -136,86 +149,47 @@ const PhaseTypography = styled(({ left, ...renderProps }) => (
 const StyledList = styled.ul`
   list-style-type: disc;
   list-style-position: inside;
-  text-indent: -24px;
-  padding-left: 1em;
-  margin-left: 16px;
+  margin-left: 15px;
   > li {
     font-size: 16px;
     line-height: 20px;
     color: black;
-    font-weight: 600;
+    font-weight: 700;
   }
 `;
 
 const PhaseGifContainer = styled(({ left, ...renderProps }) => <Column {...renderProps} />)<{
   left: boolean;
 }>`
-  width: 420px;
-  height: 262px;
-  margin-top: 32px;
-  margin-bottom: 32px;
-  ${(props): FlattenSimpleInterpolation | null => {
-    if (props.left) {
-      return css`
-        text-align: right;
-        margin-right: -24px;
-        margin-left: auto;
-      `;
-    } else {
-      return css`
-        margin-left: -24px;
-      `;
-    }
-  }};
-`;
-
-const GifContainer = styled(({ left, ...renderProps }) => <Column {...renderProps} />)<{
-  left: boolean;
-}>`
-  z-index: -1;
-  position: absolute;
   width: 100%;
-  height: 100%;
-  top: 12px;
-  background: ${(props): FlattenSimpleInterpolation | null => css`
-    ${props.theme.palette.primaryGradientFinish.main}
-  `};
-  ${(props): FlattenSimpleInterpolation | null => {
-    if (props.left) {
-      return css`
-        left: 8px;
-      `;
-    } else {
-      return css`
-        right: 8px;
-      `;
-    }
-  }};
+  margin-top: 44px;
 `;
 
-const LeftAlignedColumn = styled(Column)`
-  text-align: left;
-  margin-left: 32px;
-`;
-
-const Phase4Container = styled(Column)`
-  align-items: center;
-  width: 100%;
-`;
 const Phase4GifContainer = styled(Column)`
-  width: 992px;
-  height: 612px;
-`;
-
-const PaddedColumn = styled(Column)`
-  padding-top: 64px;
-  width: 60%;
-  margin: auto;
-  text-align: center;
+  width: 600px;
+  height: 370px;
 `;
 
 const PaddedSubtitle2 = styled(Typography)`
   && {
-    padding: 18px 32px;
+    font-family: Roboto;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 32px 125px;
+    text-align: center;
+  }
+`;
+
+const H5Typography = styled(Typography)`
+  && {
+    padding-bottom: 40px;
+  }
+`;
+
+const Phase4HeadingContainer = styled(Column)`
+  && {
+    align-items: center;
+    padding-top: 66px;
   }
 `;
