@@ -155,6 +155,10 @@ const StyledList = styled.ul`
     line-height: 20px;
     color: black;
     font-weight: 700;
+    display: inline-block;
+    ::before {
+      content: '●';
+    }
   }
 `;
 
