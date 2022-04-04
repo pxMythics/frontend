@@ -147,10 +147,9 @@ const BottomPhaseTypography = styled(({ left, ...renderProps }) => (
 `;
 
 const StyledList = styled.ul`
-  list-style-type: disc;
-  list-style-position: inside;
-  margin-left: 15px;
+  margin-left: 25px;
   > li {
+    position: relative;
     font-size: 16px;
     line-height: 20px;
     color: black;
@@ -158,6 +157,9 @@ const StyledList = styled.ul`
     display: inline-block;
     ::before {
       content: '●';
+      position: absolute;
+      top: -1px;
+      left: -17px;
     }
   }
 `;
