@@ -74,6 +74,10 @@ export const en = {
         subtext1: '$DVN will serve as the foundation for the pxMythics universe and NFT ecosystem',
         subtext2:
           'All present and future plans + utility will be accessed by using this native token.',
+        subtextMobile1: '$DVN will serve as the foundation for',
+        subtextMobile2: 'the pxMythics universe and NFT ecosystem',
+        subtextMobile3: 'All present and future plans + utility will be',
+        subtextMobile4: 'accessed by using this native token.',
         elipseAlt: 'Roadmap',
       },
       bottom: {
