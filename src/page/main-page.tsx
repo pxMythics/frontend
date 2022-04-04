@@ -15,7 +15,7 @@ export const MainPage: React.FunctionComponent = () => {
     <PageLayout>
       <HeroSection />
       <AboutSection />
-      <RoadmapTopSection />
+      {isMobile ? <></> : <RoadmapTopSection />}
       {isMobile ? <RoadmapBottomSectionMobile /> : <RoadmapBottomSection />}
       <TeamSection />
       <Footer />

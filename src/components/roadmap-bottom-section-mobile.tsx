@@ -15,6 +15,7 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
       {/*PHASE ONE*/}
       <Column>
         <PhaseTypography>{t('roadmap.bottom.phase1.title')}</PhaseTypography>
+        <Typography variant={'h5'}>{t('roadmap.bottom.phase1.subtitle')}</Typography>
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase1.body1.text1')}</Typography>
         <br />
         <StyledList>
@@ -48,7 +49,6 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
           <li>{t('roadmap.bottom.phase1.body1.subtext5')}</li>
         </StyledList>
       </Column>
-      <H5Typography>{t('roadmap.bottom.phase1.subtitle')}</H5Typography>
       <PhaseGifContainer>
         <GifContainer />
         <img src={phase1Gif} alt={t('roadmap.bottom.phase1.altGif')} />
@@ -64,7 +64,7 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
         <br />
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_4')}</Typography>
       </LeftAlignedColumn>
-      <H5Typography left>{t('roadmap.bottom.phase2.subtitle')}</H5Typography>
+      <Typography variant={'h5'}>{t('roadmap.bottom.phase2.subtitle')}</Typography>
       <PhaseGifContainer left>
         <GifContainer left />
         <img src={phase2Gif} alt={t('roadmap.bottom.phase2.altGif')} />
@@ -89,7 +89,7 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
         </StyledList>
         <br />
       </LeftAlignedColumn>
-      <H5Typography>{t('roadmap.bottom.phase3.subtitle')}</H5Typography>
+      <Typography variant={'h5'}>{t('roadmap.bottom.phase3.subtitle')}</Typography>
       <PhaseGifContainer>
         <GifContainer />
         <img src={phase3Gif} alt={t('roadmap.bottom.phase3.altGif')} />
@@ -111,9 +111,7 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
 };
 
 const Container = styled(Column)`
-  margin: auto;
-  width: 80%;
-  padding-top: 136px;
+  margin: 0px 24px;
   align-items: center;
   border: 3px solid blue;
 `;
@@ -123,6 +121,9 @@ const PhaseTypography = styled(({ left, ...renderProps }) => (
 ))<{
   left: boolean;
 }>`
+  border: 3px solid yellow;
+  padding-top: 66px;
+  padding-bottom: 35px;
   background: ${(props): FlattenSimpleInterpolation | null => css`
       linear-gradient(180deg, 
         ${props.theme.palette.secondaryGradientStart.main} 0%, 
@@ -130,7 +131,6 @@ const PhaseTypography = styled(({ left, ...renderProps }) => (
     `};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
 `;
 
 const StyledList = styled.ul`
@@ -146,25 +146,6 @@ const StyledList = styled.ul`
     font-weight: 600;
   }
 `;
-
-const H5Typography = styled(({ left, ...renderProps }) => (
-  <Typography variant={'h5'} {...renderProps} />
-))<{
-  left: boolean;
-}>`
- ${(props) => {
-   if (props.left) {
-     return css`
-       text-align: right;
-     `;
-   } else {
-     return css`
-       margin-left: 32px;
-       text-align: left;
-     `;
-   }
- }};
-}`;
 
 const PhaseGifContainer = styled(({ left, ...renderProps }) => <Column {...renderProps} />)<{
   left: boolean;
