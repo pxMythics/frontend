@@ -172,7 +172,6 @@ const Container = styled(Column)`
   width: 80%;
   padding-top: 136px;
   align-items: center;
-  border: 3px solid red;
 `;
 
 const StyledTimelineDot = styled(TimelineDot)`
