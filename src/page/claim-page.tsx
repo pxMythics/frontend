@@ -27,6 +27,9 @@ export const ClaimPage: React.FunctionComponent = () => {
   const audio = new Audio(music);
   useEffect(() => {
     audio.play();
+    return () => {
+      audio.pause();
+    };
   }, []);
 
   return (
