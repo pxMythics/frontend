@@ -32,22 +32,13 @@ export const RoadmapTopSection: React.FunctionComponent = () => {
             <Typography variant={'body1'}>{t('roadmap.top.subtext2')}</Typography>
           </>
         )}
-        {isMobile && (
-          <>
-            <MobilePosContainer>
-              <img src={elipseMobile} alt={t('roadmap.top.elipseAlt')} />
-            </MobilePosContainer>
-          </>
-        )}
+        <MobilePosContainer>
+          <img src={elipseMobile} alt={t('roadmap.top.elipseAlt')} />
+        </MobilePosContainer>
       </TopContainer>
-      {!isMobile && (
-        <>
-          <AbsolutePosContainer>
-            <img src={elipse} alt={t('roadmap.top.elipseAlt')} />
-          </AbsolutePosContainer>
-        </>
-      )}
-
+      <AbsolutePosContainer>
+        <img src={elipse} alt={t('roadmap.top.elipseAlt')} />
+      </AbsolutePosContainer>
       <BottomContainer />
     </Column>
   );
@@ -103,12 +94,20 @@ const AbsolutePosContainer = styled(Column)`
   top: 43%;
   left: 47%;
   z-index: 100;
+  visibility: hidden;
+  ${(props) => props.theme.mediaQueries.desktop} {
+    visibility: visible;
+  }
 `;
 
 const MobilePosContainer = styled(Column)`
   position: relative;
   margin-top: 18px;
   z-index: 100;
+  visibility: visible;
+  ${(props) => props.theme.mediaQueries.desktop} {
+    visibility: hidden;
+  }
 `;
 
 const StyledTypography = styled(Typography)`

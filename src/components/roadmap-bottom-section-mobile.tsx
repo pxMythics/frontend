@@ -61,7 +61,7 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
         <br />
         <Typography variant={'subtitle2'}>{t('roadmap.bottom.phase2.body1_4')}</Typography>
       </StyledColumn>
-      <PhaseGifContainer left>
+      <PhaseGifContainer>
         <img src={phase2Gif} alt={t('roadmap.bottom.phase2.altGif')} />
       </PhaseGifContainer>
       {/*PHASE THREE*/}
@@ -101,10 +101,10 @@ export const RoadmapBottomSectionMobile: React.FunctionComponent = () => {
         <PaddedSubtitle2 variant={'subtitle2'}>
           {t('roadmap.bottom.phase4.subtitle')}
         </PaddedSubtitle2>
-        <Phase4GifContainer>
-          <img src={phase4Gif} alt={t('roadmap.bottom.phase4.altGif')} />
-        </Phase4GifContainer>
       </StyledColumn>
+      <Phase4GifContainer>
+        <img src={phase4Gif} alt={t('roadmap.bottom.phase4.altGif')} />
+      </Phase4GifContainer>
     </Container>
   );
 };
@@ -113,7 +113,7 @@ const Container = styled(Column)`
   align-items: center;
 `;
 const StyledColumn = styled(Column)`
-  margin: 0px 24px;
+  padding: 0px 24px;
 `;
 
 const TopPhaseTypography = styled(({ left, ...renderProps }) => (
@@ -164,26 +164,25 @@ const StyledList = styled.ul`
   }
 `;
 
-const PhaseGifContainer = styled(({ left, ...renderProps }) => <Column {...renderProps} />)<{
-  left: boolean;
-}>`
+const PhaseGifContainer = styled(Column)`
   width: 100%;
   margin-top: 44px;
 `;
 
 const Phase4GifContainer = styled(Column)`
-  width: 600px;
-  height: 370px;
+  width: 100%;
 `;
 
 const PaddedSubtitle2 = styled(Typography)`
   && {
+    min-width: 340px;
     font-family: Roboto;
     font-size: 13px;
     line-height: 20px;
     font-weight: 500;
-    padding: 32px 125px;
+    padding: 32px 0;
     text-align: center;
+    align-items: center;
   }
 `;
 
@@ -197,5 +196,7 @@ const Phase4HeadingContainer = styled(Column)`
   && {
     align-items: center;
     padding-top: 66px;
+    word-break: break-word;
+    text-align: center;
   }
 `;
