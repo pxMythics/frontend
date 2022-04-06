@@ -3,6 +3,7 @@ import { Footer } from 'components/footer';
 import { HeroSection } from 'components/hero-section';
 import { PageLayout } from 'components/layout/page-layout';
 import { RoadmapBottomSection } from 'components/roadmap-bottom-section';
+import { RoadmapBottomSectionMobile } from 'components/roadmap-bottom-section-mobile';
 import { RoadmapTopSection } from 'components/roadmap-top-section';
 import { TeamSection } from 'components/team-section';
 import { useOnMobile } from 'hooks/use-on-mobile';
@@ -14,12 +15,8 @@ export const MainPage: React.FunctionComponent = () => {
     <PageLayout>
       <HeroSection />
       <AboutSection />
-      {!isMobile && (
-        <>
-          <RoadmapTopSection />
-          <RoadmapBottomSection />
-        </>
-      )}
+      <RoadmapTopSection />
+      {isMobile ? <RoadmapBottomSectionMobile /> : <RoadmapBottomSection />}
       <TeamSection />
       <Footer />
     </PageLayout>
