@@ -59,7 +59,7 @@ const StyledMenu = styled(Menu)`
   .bm-menu {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(4px);
-    padding: 56px 24px;
+    padding-top: 56px;
   }
   .bm-item-list {
     display: flex;
@@ -67,6 +67,7 @@ const StyledMenu = styled(Menu)`
     position: relative;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 `;
 
@@ -81,8 +82,8 @@ const LogoContainer = styled(Column)`
   && {
     display: flex !important;
   }
-  margin: 32px 0;
-  gap: 32px;
+  padding-top: 12px;
+  gap: 20px;
   svg {
     height: 56px;
   }
