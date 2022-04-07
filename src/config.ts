@@ -67,7 +67,7 @@ const computeConfig = (): FrontendConfig => {
     contractAddress: getContractAddress(chainName),
     genesisRevealContractAddress: getGenesisRevealContractAddress(chainName),
     apiUrl: apiUrl ?? 'https://pxmythics.io/api',
-    orbContractAddress: orbContractAddress,
+    orbContractAddress: orbContractAddress ?? getOrbContractAddress(chainName),
     DAppConfig: computeDAppConfig(chainName, alchemyUrl ?? getAlchemyUrl()),
     dvnStakerContractAddress: getDvnStakerContractAddress(chainName),
     dvnContractAddress: getDvnContractAddress(chainName),
