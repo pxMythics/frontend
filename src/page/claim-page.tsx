@@ -23,9 +23,13 @@ export const ClaimPage: React.FunctionComponent = () => {
   const moveToNextStep = useCallback(() => {
     setStep(step + 1);
   }, [step]);
+
   const audio = new Audio('https://storage.googleapis.com/pxmythics-audio/claim-audio.mp3');
   useEffect(() => {
-    audio.play();
+    audio.addEventListener('canplaythrough', () => {
+      audio.loop = true;
+      audio.play();
+    });
     return () => {
       audio.pause();
     };
