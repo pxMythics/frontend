@@ -10,7 +10,7 @@ import { ClaimStep6 } from 'components/claim/claim-step6';
 import { ClaimStep7 } from 'components/claim/claim-step7';
 import { ClaimStep8 } from 'components/claim/claim-step8';
 import { ClaimStep9 } from 'components/claim/claim-step9';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { LocalStorageKey } from 'service/local-storage';
 import styled from 'styled-components';
 
@@ -23,6 +23,17 @@ export const ClaimPage: React.FunctionComponent = () => {
   const moveToNextStep = useCallback(() => {
     setStep(step + 1);
   }, [step]);
+
+  const audio = new Audio('https://storage.googleapis.com/pxmythics-audio/claim-audio.mp3');
+  useEffect(() => {
+    audio.addEventListener('canplaythrough', () => {
+      audio.loop = true;
+      audio.play();
+    });
+    return () => {
+      audio.pause();
+    };
+  }, []);
 
   return (
     <Container>
